@@ -8,7 +8,6 @@ author1:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    안녕하세요 iOS 개발자 이승기 입니다.
     실무를 제외하고도 꾸준히 개발중이고 iOS개발실력을 발전시키기위해서 방법을 찾고있습니다.
     [Cv](/assets/이승기(iOS)_이력서.pdf)
 
