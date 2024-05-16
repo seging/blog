@@ -1,11 +1,47 @@
----
-layout: blog
-title: Blog
-description: >
-  The official Hydejack blog. Version updates, example content and how-to guides on how to blog with Jekyll.
-last_modified_at: 2018-08-03
-no_link_title: false 
-no_excerpt: false 
-hide_image: false
-cover: true
----
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>이승기의 포트폴리오</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        h1, h2 { color: #333; }
+        .project { margin-bottom: 40px; }
+        .project img { width: 100%; max-width: 300px; height: auto; }
+        .link { color: #1a0dab; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>이승기의 포트폴리오</h1>
+        <p>안녕하세요, 저는 이승기입니다. iOS 앱 개발자로서의 경력과 프로젝트를 소개합니다.</p>
+    </header>
+
+    <section class="project">
+        <h2>사내인트라넷 개발</h2>
+        <p>휴가 정보 및 사내 연락처 조회 기능을 개발했습니다. RESTful API를 이용한 서버 통신과 데이터 관리를 구현하였습니다.</p>
+        <p><strong>사용 기술:</strong> Swift, SwiftyJSON, Alamofire, KeychainSwift, SnapKit, FSCalendar</p>
+        <!-- 이미지 추가 -->
+        <div>
+            <img src="image_path_here.jpg" alt="사내인트라넷 프로젝트 이미지">
+            <p>프로젝트의 스크린샷을 추가하세요.</p>
+        </div>
+    </section>
+
+    <section class="project">
+        <h2>글로벌 서비스 앱</h2>
+        <p>다양한 국가용 iOS 앱의 언어 팩 적용과 UI 변경 작업을 진행했습니다.</p>
+        <p><strong>사용 기술:</strong> Objective-C, Swift, Masonry, Firebase, Google Maps, FMDB</p>
+        <!-- 이미지 추가 -->
+        <div>
+            <img src="image_path_here.jpg" alt="글로벌 서비스 앱 프로젝트 이미지">
+            <p>프로젝트의 스크린샷을 추가하세요.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>더 많은 정보를 원하시면 <a href="mailto:your.email@example.com" class="link">이메일로 연락</a> 주세요.</p>
+    </footer>
+</body>
+</html>
+
