@@ -1,35 +1,388 @@
+
 <!DOCTYPE html>
 <html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>이승기의 포트폴리오</title>
+    <style>
+        header {
+            padding-left: 20px;
+        }
+        body {
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            background-color: #f9f9f9; 
+            color: #333; 
+            transition: margin-left 0.5s ease-in-out;
+        }
+        footer {
+            padding-left: 20px;
+        }
+        h1, h2, h3 { color: #333; }
+        section { 
+            margin-bottom: 40px; 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+            transition: margin-left 0.5s ease-in-out; 
+        }
+        .image-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px 0;
+        }
+        .image-gallery img {
+            flex: 0 0 auto;
+            height: 160px;
+            border-radius: 8px;
+        }
+        ul { list-style-type: none; padding: 0; }
+        li { margin-bottom: 5px; }
+        a { color: #1a0dab; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .menu { 
+            position: fixed; 
+            top: 0; 
+            left: -250px; 
+            width: 250px; 
+            height: 100%; 
+            background-color: #333; 
+            padding-top: 60px; 
+            transition: left 0.5s ease-in-out; 
+            overflow-x: hidden; 
+        }
+        .menu a { 
+            padding: 10px 15px; 
+            text-decoration: none; 
+            font-size: 25px; 
+            color: #f1f1f1; 
+            display: block; 
+            transition: 0.3s; 
+        }
+        .menu a:hover { background-color: #575757; }
+        .menu .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; }
+        #menuBtn { font-size: 30px; cursor: pointer; }
+        .submenu { display: none; background-color: #444; padding-left: 20px; }
+        .submenu a { font-size: 20px; }
+        .menu a.expandable::after { 
+            content: none;
+        }
+        .menu a.expandable.active::after { content: '\25B2'; }
+        .open { margin-left: 250px; }
+        .tab {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            background-color: #ffffff; /* 탭바 색상 변경 */
+            border-radius: 15px 15px 0 0; /* 좌우 끝을 둥글게 */
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        .tab button:hover {
+            background-color: #f1f1f1; /* 호버 시 배경색 변경 */
+        }
+        .tab button.active {
+            background-color: #ddd; /* 활성화된 탭의 배경색 */
+            border-top-left-radius: 15px; /* 활성화된 탭의 좌측 상단 둥글게 */
+            border-top-right-radius: 15px; /* 활성화된 탭의 우측 상단 둥글게 */
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span id="menuBtn">&#9776; 메뉴</span>
+        <h1>이승기의 포트폴리오</h1>
+        <p>안녕하세요, 저는 iOS 애플리케이션 개발자 이승기입니다. 다양한 프로젝트에 참여했습니다.</p>
+    </header>
+    
+    <div id="menu" class="menu">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
+        <a href="index.html">홈</a>
+        <a href="#" class="expandable" onclick="toggleSubmenu('wwdcSubmenu')">기술 정리 (WWDC)</a>
+        <div id="wwdcSubmenu" class="submenu">
+            <a href="wwdc1.html">WWDC 1</a>
+            <a href="wwdc2.html">WWDC 2</a>
+            <a href="wwdc3.html">WWDC 3</a>
+        </div>
+        <a href="#" class="expandable" onclick="toggleSubmenu('swiftSubmenu')">기술 정리 (Swift)</a>
+        <div id="swiftSubmenu" class="submenu">
+            <a href="swift1.html">Swift 1</a>
+            <a href="swift2.html">Swift 2</a>
+            <a href="swift3.html">Swift 3</a>
+        </div>
+    </div>
+
+    <section>
+        <h2>경력</h2>
+        <ul>
+            <li>네오플러스: 2019.07 - 2020.06</li>
+            <li>B2 (프리랜서): 2020.09 - 2020.11</li>
+            <li>ICB: 2021.01 - 2022.10</li>
+            <li>MDS: 2023.12 - 2024.02</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h2>프로젝트</h2>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'companyProjects')" id="defaultOpen">회사에서 한 프로젝트</button>
+            <button class="tablinks" onclick="openTab(event, 'personalProjects')">개인 프로젝트</button>
+            <button class="tablinks" onclick="openTab(event, 'externalActivities')">대외활동</button>
+        </div>
+        <div id="companyProjects" class="tabcontent">
+            
+            <h3>네오플러스</h3>
+            <h3>사내인트라넷 개발</h3>
+            <p>휴가정보 및 사내 연락처 조회 가능. RESTful API를 이용한 서버 API 통신 개발.</p>
+            <p><strong>사용 기술:</strong> Swift, SwiftyJSON, Alamofire, KeychainSwift, SnapKit, FSCalendar</p>
+            <div class="image-gallery">
+                <img src="images/네오인트라넷-1.jpg" alt="사내인트라넷 프로젝트">
+                <img src="images/네오인트라넷-2.jpg" alt="사내인트라넷 프로젝트">
+                <img src="images/네오인트라넷-3.jpg" alt="사내인트라넷 프로젝트">
+                <img src="images/네오인트라넷-4.jpg" alt="사내인트라넷 프로젝트">
+            </div>
+
+            <h3>지아이티 - 글로벌 서비스 앱 개발</h3>
+            <p>멕시코, 러시아, 인도 서비스 앱 개발, 언어팩 적용 및 화면 변경, 유지보수 작업.</p>
+            <p><strong>사용 기술:</strong> Objective-C, Swift, Masonry, Firebase, Google Maps, FMDB</p>
+            
+            <h3>ICB</h3>
+            <h3>GOS 앱</h3>
+            <p>소스 리팩토링, 기능 추가 및 개선, 소스 이슈대응 등을 포함한 유지보수 작업.</p>
+            <p><strong>사용 기술:</strong> Objective-C, Swift</p>
+            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/gos/id1509217154">GOS</a></p>
+            <div class="image-gallery"></div>
+
+            <h3>Qrick 앱</h3>
+            <p>소스 리팩토링, 기능 추가 및 개선, 소스 이슈대응 등을 포함한 유지보수 작업.</p>
+            <p><strong>사용 기술:</strong> Objective-C, Swift</p>
+            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/qrick/id1331822769">Qrick</a></p>
+            <div class="image-gallery"></div>
+
+            <h3>MDS</h3>
+            <h3>파킹프렌즈 앱</h3>
+            <p>소스 리팩토링, 유지보수, 이슈 대응, 기능 추가 및 개선 작업을 진행했습니다. 라이브러리 마이그레이션 작업도 포함되었습니다.</p>
+            <p><strong>사용 기술:</strong> Swift, RxSwift</p>
+            <p><strong>기간:</strong> 2023.01 ~ 2024.02</p>
+            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88/id1437488741">파킹프렌즈</a></p>
+            <div class="image-gallery"></div>
+            
+            <h3>파킹프렌즈 파트너 앱</h3>
+            <p>소스 리팩토링, 유지보수, 이슈 대응, 기능 추가 및 개선 작업을 진행했습니다.</p>
+            <p><strong>사용 기술:</strong> React, Swift</p>
+            <p><strong>기간:</strong> 2021.06 ~ 2024.02</p>
+            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88-%ED%8C%8C%ED%8A%B8%EB%84%88/id1456976566">파킹프렌즈 파트너</a></p>
+            <div class="image-gallery"></div>
+        </div>
+
+        <div id="personalProjects" class="tabcontent">
+            
+            <h3>We</h3>
+            <p>커플 D-day, 일정관리 앱. RxSwift와 MVVM 패턴을 활용하여 개발하였습니다.</p>
+            <p><strong>사용 기술:</strong> RxSwift, MVVM</p>
+            <div class="image-gallery"></div>
+            
+            <h3>Nurse Timer</h3>
+            <p>복수의 타이머를 등록할 수 있는 애플워치 앱.</p>
+            <p><strong>사용 기술:</strong> SwiftUI, MVVM</p>
+            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/nursetimer/id6477325168">Nurse Timer</a></p>
+            <div class="image-gallery">
+                <img src="images/NurseTimer-아이폰1.PNG" alt="Nurse Timer">
+                <img src="images/NurseTimer-아이폰2.PNG" alt="Nurse Timer">
+                <img src="images/NurseTimer-아이폰3.PNG" alt="Nurse Timer">
+                <img src="images/NurseTimer-아이폰4.PNG" alt="Nurse Timer">
+                <img src="images/NurseTimer-애플워치1.jpg" alt="Nurse Timer">
+                <img src="images/NurseTimer-애플워치2.jpg" alt="Nurse Timer">
+                <img src="images/NurseTimer-애플워치3.jpg" alt="Nurse Timer">
+            </div>
+            
+            
+        </div>
+
+        <div id="externalActivities" class="tabcontent">
+            <h2>대외활동</h2>
+            <h3>한이음 공모전 참여</h3>
+            <p>AWS 클라우드 서비스를 이용하여 제품 개발.</p>
+            <p><strong>기간:</strong> 2018.03 - 2018.12</p>
+            <p><strong>사용 기술:</strong> AWS EC2, S3, Polly, SDK, DynamoDB, Swift, Alamofire</p>
+            <p><strong>시연 영상 링크:</strong> <a href="https://www.youtube.com/watch?v=cranY6sji4g">시연 영상 보기</a></p>
+            
+            <h3>Linxtelecom 외주 프로젝트</h3>
+            <p>기존 custom QR 코드 앱 유지보수 및 UI 개선 작업.</p>
+            <p><strong>기간:</strong> 2018.07 - 2018.10</p>
+            <p><strong>사용 기술:</strong> Objective-C</p>
+            <p><strong>앱스토어 링크:</strong> <a href="https://itunes.apple.com/kr/app/pufscanner/id1084263211?mt=8">Pufscanner</a></p>
+            <div class="image-gallery">
+                <img src="images/퍼프스케너-1.jpg" alt="Linxtelecom">
+                <img src="images/퍼프스케너-2.jpg" alt="Linxtelecom">
+            </div>
+    
+            <h3>스마트윈도우</h3>
+            <p>아두이노와 iOS앱을 활용한 자동창문. iOS 앱과 아두이노 연동 개발을 진행하였습니다.</p>
+            <p><strong>사용 기술:</strong> Swift, Core Bluetooth</p>
+            <p><strong>기간:</strong> 2020.12</p>
+            <p><strong>시연 영상:</strong> <a href="video/smartwindowapp.mp4" target="_blank">시연 영상 보기</a></p>
+        </div>
+    </section>
+    
+    
+    
+    <footer>
+        <p>더 많은 정보를 원하시면 <a href="mailto:lksgfj93@naver.com">이메일로 연락</a> 주세요.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            if (menu.style.left === "0px") {
+                menu.style.left = "-250px";
+                document.body.classList.remove("open");
+            } else {
+                menu.style.left = "0";
+                document.body.classList.add("open");
+            }
+        }
+
+        document.getElementById("menuBtn").onclick = toggleMenu;
+
+        function toggleSubmenu(id) {
+            var submenu = document.getElementById(id);
+            if (submenu.style.display === "block") {
+                submenu.style.display = "none";
+            } else {
+                submenu.style.display = "block";
+            }
+        }
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        document.getElementById("defaultOpen").click();
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+
+<!-- <html lang="ko">
     <head>
         <meta charset="UTF-8">
-            <title>이승기의 포트폴리오</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; color: #333; }
-                h1, h2, h3 { color: #333; }
-                section { margin-bottom: 40px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-                .image-gallery {
-                    display: flex;
-                    overflow-x: auto;
-                    gap: 10px;
-                    padding: 10px 0;
-                }
-                .image-gallery img {
-                    flex: 0 0 auto;
-                    height: 160px;
-                    border-radius: 8px;
-                }
-                ul { list-style-type: none; padding: 0; }
-                li { margin-bottom: 5px; }
-                a { color: #1a0dab; text-decoration: none; }
-                a:hover { text-decoration: underline; }
-            </style>
+        <title>이승기의 포트폴리오</title>
+        <style>
+            header {
+                padding-left: 20px;
+            }
+            body {
+                font-family: Arial, sans-serif; 
+                margin: 0; 
+                background-color: #f9f9f9; 
+                color: #333; 
+                transition: margin-left 0.5s ease-in-out;
+            }
+            footer {
+                padding-left: 20px;
+            }
+            h1, h2, h3 { color: #333; }
+            section { 
+                margin-bottom: 40px; 
+                background-color: white; 
+                padding: 20px; 
+                border-radius: 8px; 
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+                transition: margin-left 0.5s ease-in-out; 
+            }
+            .image-gallery {
+                display: flex;
+                overflow-x: auto;
+                gap: 10px;
+                padding: 10px 0;
+            }
+            .image-gallery img {
+                flex: 0 0 auto;
+                height: 160px;
+                border-radius: 8px;
+            }
+            ul { list-style-type: none; padding: 0; }
+            li { margin-bottom: 5px; }
+            a { color: #1a0dab; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+            .menu { 
+                position: fixed; 
+                top: 0; 
+                left: -250px; 
+                width: 250px; 
+                height: 100%; 
+                background-color: #333; 
+                padding-top: 60px; 
+                transition: left 0.5s ease-in-out; 
+                overflow-x: hidden; 
+            }
+            .menu a { 
+                padding: 10px 15px; 
+                text-decoration: none; 
+                font-size: 25px; 
+                color: #f1f1f1; 
+                display: block; 
+                transition: 0.3s; 
+            }
+            .menu a:hover { background-color: #575757; }
+            .menu .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; }
+            #menuBtn { font-size: 30px; cursor: pointer; }
+            .submenu { display: none; background-color: #444; padding-left: 20px; }
+            .submenu a { font-size: 20px; }
+            .menu a.expandable::after { content: '\25BC'; float: right; }
+            .menu a.expandable.active::after { content: '\25B2'; }
+            .open { margin-left: 250px; }
+        </style>
     </head>
     <body>
         <header>
+            <span id="menuBtn">&#9776; 메뉴</span>
             <h1>이승기의 포트폴리오</h1>
             <p>안녕하세요, 저는 iOS 애플리케이션 개발자 이승기입니다. 다양한 프로젝트에 참여했습니다.</p>
         </header>
         
+        <div id="menu" class="menu">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+            <a href="index.html">홈</a>
+            <a href="#" class="expandable" onclick="toggleSubmenu('wwdcSubmenu')">기술 정리 (WWDC)</a>
+            <div id="wwdcSubmenu" class="submenu">
+                <a href="wwdc1.html">WWDC 1</a>
+                <a href="wwdc2.html">WWDC 2</a>
+                <a href="wwdc3.html">WWDC 3</a>
+            </div>
+            <a href="#" class="expandable" onclick="toggleSubmenu('swiftSubmenu')">기술 정리 (Swift)</a>
+            <div id="swiftSubmenu" class="submenu">
+                <a href="swift1.html">Swift 1</a>
+                <a href="swift2.html">Swift 2</a>
+                <a href="swift3.html">Swift 3</a>
+            </div>
+        </div>
+
         <section>
             <h2>경력</h2>
             <ul>
@@ -148,5 +501,28 @@
         <footer>
             <p>더 많은 정보를 원하시면 <a href="mailto:lksgfj93@naver.com">이메일로 연락</a> 주세요.</p>
         </footer>
+
+        <script>
+            function openMenu() {
+                document.getElementById("menu").style.left = "0";
+                document.body.classList.add("open");
+            }
+    
+            function closeMenu() {
+                document.getElementById("menu").style.left = "-250px";
+                document.body.classList.remove("open");
+            }
+    
+            document.getElementById("menuBtn").onclick = openMenu;
+    
+            function toggleSubmenu(id) {
+                var submenu = document.getElementById(id);
+                if (submenu.style.display === "block") {
+                    submenu.style.display = "none";
+                } else {
+                    submenu.style.display = "block";
+                }
+            }
+        </script>
     </body>
-</html>
+</html> -->
