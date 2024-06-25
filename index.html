@@ -100,6 +100,71 @@
             padding: 20px;
             border-top: none;
         }
+        /* 모달 스타일 */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            padding-top: 100px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.9); 
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            max-height: 80%;
+        }
+        .modal-content, #caption {  
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
     </style>
 </head>
 <body>
@@ -150,10 +215,10 @@
             <p>휴가정보 및 사내 연락처 조회 가능. RESTful API를 이용한 서버 API 통신 개발.</p>
             <p><strong>사용 기술:</strong> Swift, SwiftyJSON, Alamofire, KeychainSwift, SnapKit, FSCalendar</p>
             <div class="image-gallery">
-                <img src="images/네오인트라넷-1.jpg" alt="사내인트라넷 프로젝트">
-                <img src="images/네오인트라넷-2.jpg" alt="사내인트라넷 프로젝트">
-                <img src="images/네오인트라넷-3.jpg" alt="사내인트라넷 프로젝트">
-                <img src="images/네오인트라넷-4.jpg" alt="사내인트라넷 프로젝트">
+                <img src="images/네오인트라넷-1.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                <img src="images/네오인트라넷-2.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                <img src="images/네오인트라넷-3.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                <img src="images/네오인트라넷-4.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
             </div>
 
             <h3>지아이티 - 글로벌 서비스 앱 개발</h3>
@@ -165,13 +230,22 @@
             <p>소스 리팩토링, 기능 추가 및 개선, 소스 이슈대응 등을 포함한 유지보수 작업.</p>
             <p><strong>사용 기술:</strong> Objective-C, Swift</p>
             <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/gos/id1509217154">GOS</a></p>
-            <div class="image-gallery"></div>
+            <div class="image-gallery">
+                <img src="images/GOS1.PNG" alt="ICB" onclick="openModal(this)">
+                <img src="images/GOS2.PNG" alt="ICB" onclick="openModal(this)">
+                
+            </div>
 
             <h3>Qrick 앱</h3>
             <p>소스 리팩토링, 기능 추가 및 개선, 소스 이슈대응 등을 포함한 유지보수 작업.</p>
             <p><strong>사용 기술:</strong> Objective-C, Swift</p>
             <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/qrick/id1331822769">Qrick</a></p>
-            <div class="image-gallery"></div>
+            <div class="image-gallery">
+                <img src="images/Qrick1.PNG" alt="ICB" onclick="openModal(this)">
+                <img src="images/Qrick2.PNG" alt="ICB" onclick="openModal(this)">
+                <img src="images/Qrick3.PNG" alt="ICB" onclick="openModal(this)">
+                <img src="images/Qrick4.PNG" alt="ICB" onclick="openModal(this)">
+            </div>
 
             <h3>MDS</h3>
             <h3>파킹프렌즈 앱</h3>
@@ -179,13 +253,24 @@
             <p><strong>사용 기술:</strong> Swift, RxSwift</p>
             <p><strong>기간:</strong> 2023.01 ~ 2024.02</p>
             <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88/id1437488741">파킹프렌즈</a></p>
-            <div class="image-gallery"></div>
+            <div class="image-gallery">
+                <img src="images/파킹프렌즈1.PNG" alt="MDS" onclick="openModal(this)">
+                <img src="images/파킹프렌즈2.PNG" alt="MDS" onclick="openModal(this)">
+            </div>
             
             <h3>파킹프렌즈 파트너 앱</h3>
             <p>소스 리팩토링, 유지보수, 이슈 대응, 기능 추가 및 개선 작업을 진행했습니다.</p>
             <p><strong>사용 기술:</strong> React, Swift</p>
             <p><strong>기간:</strong> 2021.06 ~ 2024.02</p>
             <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88-%ED%8C%8C%ED%8A%B8%EB%84%88/id1456976566">파킹프렌즈 파트너</a></p>
+            <div class="image-gallery">
+                <img src="images/파킹프렌즈파트너1.PNG" alt="MDS" onclick="openModal(this)">
+                <img src="images/파킹프렌즈파트너2.PNG" alt="MDS" onclick="openModal(this)">
+            </div>
+
+            <h3>B2 - 강아샘통 앱</h3>
+            <p>앱 소스 리팩토링 및 기능 개선 작업을 진행.</p>
+            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/%EA%B0%95%EC%95%84%EC%83%98%ED%86%B5/id1295938279">강아샘통</a></p>
             <div class="image-gallery"></div>
         </div>
 
@@ -197,29 +282,42 @@
             <div class="image-gallery"></div>
             
             <h3>Nurse Timer</h3>
-            <p>복수의 타이머를 등록할 수 있는 애플워치 앱.</p>
+            <p>동시에 여러개의 타이머를 등록할 수 있는 watchOS 앱. & 근무 일정 관리 및 타이머를 관리하는 iOS 앱.</p>
             <p><strong>사용 기술:</strong> SwiftUI, MVVM</p>
             <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/nursetimer/id6477325168">Nurse Timer</a></p>
             <div class="image-gallery">
-                <img src="images/NurseTimer-아이폰1.PNG" alt="Nurse Timer">
-                <img src="images/NurseTimer-아이폰2.PNG" alt="Nurse Timer">
-                <img src="images/NurseTimer-아이폰3.PNG" alt="Nurse Timer">
-                <img src="images/NurseTimer-아이폰4.PNG" alt="Nurse Timer">
-                <img src="images/NurseTimer-애플워치1.jpg" alt="Nurse Timer">
-                <img src="images/NurseTimer-애플워치2.jpg" alt="Nurse Timer">
-                <img src="images/NurseTimer-애플워치3.jpg" alt="Nurse Timer">
+                <img src="images/NurseTimer-아이폰1.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                <img src="images/NurseTimer-아이폰2.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                <img src="images/NurseTimer-아이폰3.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                <img src="images/NurseTimer-아이폰4.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                <img src="images/NurseTimer-아이폰5.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                <img src="images/NurseTimer-아이폰6.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                <img src="images/NurseTimer-애플워치1.jpg" alt="Nurse Timer" onclick="openModal(this)">
+                <img src="images/NurseTimer-애플워치2.jpg" alt="Nurse Timer" onclick="openModal(this)">
+                <img src="images/NurseTimer-애플워치3.jpg" alt="Nurse Timer" onclick="openModal(this)">
             </div>
             
             
         </div>
 
         <div id="externalActivities" class="tabcontent">
-            <h2>대외활동</h2>
+
+            <h3>협업하는 프론티어</h3>
+            <p>지역 내 문제를 해결하기 위한 아이디어 및 개발 공모전</p>
+            <p>휴대폰 어플(iOS,AOS)과 아두이노 블루투스를 이용하여 연동 차량 번호판 글자를 인식하여 주차장 자리를 예약하는 플랫폼 개발</p>
+            <p><strong>기간:</strong> 2018.03</p>
+            <p><strong>사용기술:</strong> Swfit,Java,Core Bluetooth</p>
+            
+            
             <h3>한이음 공모전 참여</h3>
             <p>AWS 클라우드 서비스를 이용하여 제품 개발.</p>
             <p><strong>기간:</strong> 2018.03 - 2018.12</p>
             <p><strong>사용 기술:</strong> AWS EC2, S3, Polly, SDK, DynamoDB, Swift, Alamofire</p>
             <p><strong>시연 영상 링크:</strong> <a href="https://www.youtube.com/watch?v=cranY6sji4g">시연 영상 보기</a></p>
+            <div class="image-gallery">
+                <img src="images/한이음1.PNG" alt="한이음" onclick="openModal(this)">
+                <img src="images/한이음2.PNG" alt="한이음" onclick="openModal(this)">
+            </div>
             
             <h3>Linxtelecom 외주 프로젝트</h3>
             <p>기존 custom QR 코드 앱 유지보수 및 UI 개선 작업.</p>
@@ -227,15 +325,20 @@
             <p><strong>사용 기술:</strong> Objective-C</p>
             <p><strong>앱스토어 링크:</strong> <a href="https://itunes.apple.com/kr/app/pufscanner/id1084263211?mt=8">Pufscanner</a></p>
             <div class="image-gallery">
-                <img src="images/퍼프스케너-1.jpg" alt="Linxtelecom">
-                <img src="images/퍼프스케너-2.jpg" alt="Linxtelecom">
+                <img src="images/퍼프스케너-1.jpg" alt="Linxtelecom" onclick="openModal(this)">
+                <img src="images/퍼프스케너-2.jpg" alt="Linxtelecom" onclick="openModal(this)">
             </div>
+
+            <h3>정보처리기사 취득</h3>
+            <p><strong>기간:</strong> 2018.08</p>
+            <p><strong>발급처:</strong> 한국산업인력공단</p>
     
             <h3>스마트윈도우</h3>
             <p>아두이노와 iOS앱을 활용한 자동창문. iOS 앱과 아두이노 연동 개발을 진행하였습니다.</p>
-            <p><strong>사용 기술:</strong> Swift, Core Bluetooth</p>
             <p><strong>기간:</strong> 2020.12</p>
+            <p><strong>사용 기술:</strong> Swift, Core Bluetooth</p>
             <p><strong>시연 영상:</strong> <a href="video/smartwindowapp.mp4" target="_blank">시연 영상 보기</a></p>
+
         </div>
     </section>
     
@@ -244,6 +347,14 @@
     <footer>
         <p>더 많은 정보를 원하시면 <a href="mailto:lksgfj93@naver.com">이메일로 연락</a> 주세요.</p>
     </footer>
+
+    <!-- 모달 -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+        <a class="next" onclick="changeImage(1)">&#10095;</a>
+    </div>
 
     <script>
         function toggleMenu() {
@@ -283,246 +394,48 @@
         }
 
         document.getElementById("defaultOpen").click();
+
+        // 이미지 모달 기능
+        let modal = document.getElementById("modal");
+        let modalImg = document.getElementById("modalImage");
+        let currentImgIndex = 0;
+        let images = [];
+
+        function openModal(img) {
+            images = Array.from(img.parentElement.getElementsByTagName("img"));
+            currentImgIndex = images.indexOf(img);
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        function changeImage(direction) {
+            currentImgIndex += direction;
+            if (currentImgIndex >= images.length) {
+                currentImgIndex = 0;
+            } else if (currentImgIndex < 0) {
+                currentImgIndex = images.length - 1;
+            }
+            modalImg.src = images[currentImgIndex].src;
+        }
+
+        // 키보드 화살표로 이미지 변경
+        document.addEventListener('keydown', function(event) {
+            if (modal.style.display === "block") {
+                if (event.key === "ArrowLeft") {
+                    changeImage(-1);
+                } else if (event.key === "ArrowRight") {
+                    changeImage(1);
+                } else if (event.key === "Escape") {
+                    closeModal();
+                }
+            }
+        });
     </script>
 </body>
 </html>
 <!DOCTYPE html>
 
-<!-- <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <title>이승기의 포트폴리오</title>
-        <style>
-            header {
-                padding-left: 20px;
-            }
-            body {
-                font-family: Arial, sans-serif; 
-                margin: 0; 
-                background-color: #f9f9f9; 
-                color: #333; 
-                transition: margin-left 0.5s ease-in-out;
-            }
-            footer {
-                padding-left: 20px;
-            }
-            h1, h2, h3 { color: #333; }
-            section { 
-                margin-bottom: 40px; 
-                background-color: white; 
-                padding: 20px; 
-                border-radius: 8px; 
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-                transition: margin-left 0.5s ease-in-out; 
-            }
-            .image-gallery {
-                display: flex;
-                overflow-x: auto;
-                gap: 10px;
-                padding: 10px 0;
-            }
-            .image-gallery img {
-                flex: 0 0 auto;
-                height: 160px;
-                border-radius: 8px;
-            }
-            ul { list-style-type: none; padding: 0; }
-            li { margin-bottom: 5px; }
-            a { color: #1a0dab; text-decoration: none; }
-            a:hover { text-decoration: underline; }
-            .menu { 
-                position: fixed; 
-                top: 0; 
-                left: -250px; 
-                width: 250px; 
-                height: 100%; 
-                background-color: #333; 
-                padding-top: 60px; 
-                transition: left 0.5s ease-in-out; 
-                overflow-x: hidden; 
-            }
-            .menu a { 
-                padding: 10px 15px; 
-                text-decoration: none; 
-                font-size: 25px; 
-                color: #f1f1f1; 
-                display: block; 
-                transition: 0.3s; 
-            }
-            .menu a:hover { background-color: #575757; }
-            .menu .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; }
-            #menuBtn { font-size: 30px; cursor: pointer; }
-            .submenu { display: none; background-color: #444; padding-left: 20px; }
-            .submenu a { font-size: 20px; }
-            .menu a.expandable::after { content: '\25BC'; float: right; }
-            .menu a.expandable.active::after { content: '\25B2'; }
-            .open { margin-left: 250px; }
-        </style>
-    </head>
-    <body>
-        <header>
-            <span id="menuBtn">&#9776; 메뉴</span>
-            <h1>이승기의 포트폴리오</h1>
-            <p>안녕하세요, 저는 iOS 애플리케이션 개발자 이승기입니다. 다양한 프로젝트에 참여했습니다.</p>
-        </header>
-        
-        <div id="menu" class="menu">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-            <a href="index.html">홈</a>
-            <a href="#" class="expandable" onclick="toggleSubmenu('wwdcSubmenu')">기술 정리 (WWDC)</a>
-            <div id="wwdcSubmenu" class="submenu">
-                <a href="wwdc1.html">WWDC 1</a>
-                <a href="wwdc2.html">WWDC 2</a>
-                <a href="wwdc3.html">WWDC 3</a>
-            </div>
-            <a href="#" class="expandable" onclick="toggleSubmenu('swiftSubmenu')">기술 정리 (Swift)</a>
-            <div id="swiftSubmenu" class="submenu">
-                <a href="swift1.html">Swift 1</a>
-                <a href="swift2.html">Swift 2</a>
-                <a href="swift3.html">Swift 3</a>
-            </div>
-        </div>
-
-        <section>
-            <h2>경력</h2>
-            <ul>
-                <li>네오플러스: 2019.07 - 2020.06</li>
-                <li>B2 (프리랜서): 2020.09 - 2020.11</li>
-                <li>ICB: 2021.01 - 2022.10</li>
-                <li>MDS: 2023.12 - 2024.02</li>
-            </ul>
-        </section>
-        
-        <section>
-            <h2>프로젝트</h2>
-            <h3>사내인트라넷 개발</h3>
-            <p>휴가정보 및 사내 연락처 조회 가능. RESTful API를 이용한 서버 API 통신 개발.</p>
-            <p><strong>사용 기술:</strong> Swift, SwiftyJSON, Alamofire, KeychainSwift, SnapKit, FSCalendar</p>
-            <div class="image-gallery">
-                <img src="images/네오인트라넷-1.jpg" alt="사내인트라넷 프로젝트">
-                    <img src="images/네오인트라넷-2.jpg" alt="사내인트라넷 프로젝트">
-                        <img src="images/네오인트라넷-3.jpg" alt="사내인트라넷 프로젝트">
-                            <img src="images/네오인트라넷-4.jpg" alt="사내인트라넷 프로젝트">
-                            </div>
-            
-            <h3>지아이티 - 글로벌 서비스 앱 개발</h3>
-            <p>멕시코, 러시아, 인도 서비스 앱 개발, 언어팩 적용 및 화면 변경, 유지보수 작업.</p>
-            <p><strong>사용 기술:</strong> Objective-C, Swift, Masonry, Firebase, Google Maps, FMDB</p>
-            <div class="image-gallery">
-                
-            </div>
-            
-            <h3>B2 - 강아샘통 앱</h3>
-            <p>앱 소스 리팩토링 및 기능 개선 작업을 진행.</p>
-            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/%EA%B0%95%EC%95%84%EC%83%98%ED%86%B5/id1295938279">강아샘통</a></p>
-            <div class="image-gallery">
-                
-            </div>
-            
-            <h3>GOS 앱</h3>
-            <p>소스 리팩토링, 기능 추가 및 개선, 소스 이슈대응 등을 포함한 유지보수 작업.</p>
-            <p><strong>사용 기술:</strong> Objective-C, Swift</p>
-            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/gos/id1509217154">GOS</a></p>
-            <div class="image-gallery">
-                
-            </div>
-            
-            <h3>Qrick 앱</h3>
-            <p>소스 리팩토링, 기능 추가 및 개선, 소스 이슈대응 등을 포함한 유지보수 작업.</p>
-            <p><strong>사용 기술:</strong> Objective-C, Swift</p>
-            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/qrick/id1331822769">Qrick</a></p>
-            <div class="image-gallery">
-                
-            </div>
-            
-            <h3>파킹프렌즈 앱</h3>
-            <p>소스 리팩토링, 유지보수, 이슈 대응, 기능 추가 및 개선 작업을 진행했습니다. 라이브러리 마이그레이션 작업도 포함되었습니다.</p>
-            <p><strong>사용 기술:</strong> Swift, RxSwift</p>
-            <p><strong>기간:</strong> 2023.01 ~ 2024.02</p>
-            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88/id1437488741">파킹프렌즈</a></p>
-            <div class="image-gallery">
-                
-            </div>
-            
-            <h3>파킹프렌즈 파트너 앱</h3>
-            <p>소스 리팩토링, 유지보수, 이슈 대응, 기능 추가 및 개선 작업을 진행했습니다.</p>
-            <p><strong>사용 기술:</strong> React, Swift</p>
-            <p><strong>기간:</strong> 2021.06 ~ 2024.02</p>
-            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88-%ED%8C%8C%ED%8A%B8%EB%84%88/id1456976566">파킹프렌즈 파트너</a></p>
-            <div class="image-gallery">
-                
-            </div>
-            
-            <h3>스마트윈도우</h3>
-            <p>아두이노와 iOS앱을 활용한 자동창문. iOS 앱과 아두이노 연동 개발을 진행하였습니다.</p>
-            <p><strong>사용 기술:</strong> Swift, Core Bluetooth</p>
-            <p><strong>기간:</strong> 2020.12</p>
-            <p><strong>시연 영상:</strong> <a href="video/smartwindowapp.mp4" target="_blank">시연 영상 보기</a></p>
-            
-            <h3>We</h3>
-            <p>커플 D-day, 일정관리 앱. RxSwift와 MVVM 패턴을 활용하여 개발하였습니다.</p>
-            <p><strong>사용 기술:</strong> RxSwift, MVVM</p>
-            
-            <h3>Nurse Timer</h3>
-            <p>복수의 타이머를 등록할 수 있는 애플워치 앱.</p>
-            <p><strong>사용 기술:</strong> SwiftUI, MVVM</p>
-            <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/nursetimer/id6477325168">Nurse Timer</a></p>
-            <div class="image-gallery">
-                <img src="images/NurseTimer-아이폰1.PNG" alt="Nurse Timer">
-                    <img src="images/NurseTimer-아이폰2.PNG" alt="Nurse Timer">
-                        <img src="images/NurseTimer-아이폰3.PNG" alt="Nurse Timer">
-                            <img src="images/NurseTimer-아이폰4.PNG" alt="Nurse Timer">
-                                <img src="images/NurseTimer-애플워치1.jpg" alt="Nurse Timer">
-                                    <img src="images/NurseTimer-애플워치2.jpg" alt="Nurse Timer">
-                                        <img src="images/NurseTimer-애플워치3.jpg" alt="Nurse Timer">
-            </div>
-            
-        </section>
-        
-        <section>
-            <h2>대외활동</h2>
-            <h3>한이음 공모전 참여</h3>
-            <p>AWS 클라우드 서비스를 이용하여 제품 개발.</p>
-            <p><strong>기간:</strong> 2018.03 - 2018.12</p>
-            <p><strong>사용 기술:</strong> AWS EC2, S3, Polly, SDK, DynamoDB, Swift, Alamofire</p>
-            <p><strong>시연 영상 링크:</strong> <a href="https://www.youtube.com/watch?v=cranY6sji4g">시연 영상 보기</a></p>
-            
-            <h3>Linxtelecom 외주 프로젝트</h3>
-            <p>기존 custom QR 코드 앱 유지보수 및 UI 개선 작업.</p>
-            <p><strong>기간:</strong> 2018.07 - 2018.10</p>
-            <p><strong>사용 기술:</strong> Objective-C</p>
-            <p><strong>앱스토어 링크:</strong> <a href="https://itunes.apple.com/kr/app/pufscanner/id1084263211?mt=8">Pufscanner</a></p>
-            <div class="image-gallery">
-                <img src="images/퍼프스케너-1.jpg" alt="Linxtelecom">
-                    <img src="images/퍼프스케너-2.jpg" alt="Linxtelecom">
-            </div>
-        </section>
-        
-        <footer>
-            <p>더 많은 정보를 원하시면 <a href="mailto:lksgfj93@naver.com">이메일로 연락</a> 주세요.</p>
-        </footer>
-
-        <script>
-            function openMenu() {
-                document.getElementById("menu").style.left = "0";
-                document.body.classList.add("open");
-            }
-    
-            function closeMenu() {
-                document.getElementById("menu").style.left = "-250px";
-                document.body.classList.remove("open");
-            }
-    
-            document.getElementById("menuBtn").onclick = openMenu;
-    
-            function toggleSubmenu(id) {
-                var submenu = document.getElementById(id);
-                if (submenu.style.display === "block") {
-                    submenu.style.display = "none";
-                } else {
-                    submenu.style.display = "block";
-                }
-            }
-        </script>
-    </body>
-</html> -->
