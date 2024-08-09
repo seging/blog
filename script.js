@@ -1,9 +1,14 @@
+
 const data = {
-    menu: [
+    categories: [
         {
             id: "portfolio",
             title: "포트폴리오",
-            content: `
+            items: [
+                {
+                    id: "portfolio",
+                    title: "포트폴리오",
+                    content: `
                 <h2>포트폴리오</h2>
                 <p>안녕하세요, 저는 iOS 애플리케이션 개발자 이승기입니다. 다양한 프로젝트에 참여했습니다.</p>
                 <section>
@@ -135,39 +140,100 @@ const data = {
                     </div>
                 </section>
             `
+                }
+            ]
         },
         {
-            id: "study1",
-            title: "Swift 기초",
-            content: `
-                <h2>Swift 기초</h2>
-                <p>Swift의 기초 문법과 활용 방법을 정리한 내용입니다.</p>
-                <h3>변수와 상수</h3>
-                <p>Swift에서 변수와 상수를 사용하는 방법...</p>
-            `
-        },
-        {
-            id: "study2",
-            title: "RxSwift 활용",
-            content: `
-                <h2>RxSwift 활용</h2>
-                <p>RxSwift를 활용한 리액티브 프로그래밍 기법에 대한 내용입니다.</p>
-                <h3>Observable과 Observer</h3>
-                <p>RxSwift의 기본 개념인 Observable과 Observer에 대해...</p>
-            `
-        },
-        {
-            id: "study3",
-            title: "SwiftUI 기초",
-            content: `
-                <h2>SwiftUI 기초</h2>
-                <p>SwiftUI를 이용한 UI 구성 방법을 설명합니다.</p>
-                <h3>뷰와 레이아웃</h3>
-                <p>SwiftUI에서 뷰와 레이아웃을 구성하는 방법...</p>
-            `
+            id: "study",
+            title: "공부 기록",
+            items: [
+                {
+                    id: "study1",
+                    title: "Swift 기초",
+                    content: `
+                        <h2>Swift 기초</h2>
+                        <p>Swift의 기초 문법과 활용 방법을 정리한 내용입니다.</p>
+                        <h3>변수와 상수</h3>
+                        <p>Swift에서 변수와 상수를 사용하는 방법은 매우 간단합니다. 다음은 변수와 상수를 선언하는 예제입니다:</p>
+                        <pre><code class="language-swift">let constant = 10\nvar variable = 20</code></pre>
+                    `
+                },
+                {
+                    id: "study2",
+                    title: "RxSwift 활용",
+                    content: `
+                        <h2>RxSwift 활용</h2>
+                        <p>RxSwift를 활용한 리액티브 프로그래밍 기법에 대한 내용입니다.</p>
+                        <h3>Observable과 Observer</h3>
+                        <p>RxSwift의 기본 개념인 Observable과 Observer에 대해 알아보겠습니다. 다음은 간단한 Observable 예제입니다:</p>
+                        <pre><code class="language-swift">let observable = Observable.just(1)\nobservable.subscribe { event in\n  print(event)\n}</code></pre>
+                    `
+                },
+                {
+                    id: "study3",
+                    title: "SwiftUI 기초",
+                    content: `
+                        <h2>SwiftUI 기초</h2>
+                        <p>SwiftUI를 이용한 UI 구성 방법을 설명합니다.</p>
+                        <h3>뷰와 레이아웃</h3>
+                        <p>SwiftUI에서 뷰와 레이아웃을 구성하는 방법을 살펴보겠습니다. 다음은 간단한 SwiftUI 뷰 예제입니다:</p>
+                        <pre><code class="language-swift">struct ContentView: View {\n  var body: some View {\n    Text("Hello, World!")\n  }\n}</code></pre>
+                    `
+                }
+            ]
         }
     ]
 };
+
+function loadContent(id) {
+    const contentSection = document.getElementById('content-section');
+    let menuItem;
+    for (const category of data.categories) {
+        menuItem = category.items.find(item => item.id === id);
+        if (menuItem) break;
+    }
+    
+    if (menuItem) {
+        contentSection.innerHTML = menuItem.content;
+        document.title = `이승기의 블로그 - ${menuItem.title}`;
+        document.getElementById('currentSection').innerText = menuItem.title;
+        // 탭 초기화
+        if (menuItem.id === 'portfolio') {
+            setTimeout(() => {
+                document.getElementById("defaultOpen").click();
+            }, 0);
+        }
+        // Prism.js 코드 하이라이트 적용
+        Prism.highlightAll();
+    }
+}
+
+function toggleSubmenu(id) {
+    const submenu = document.getElementById(id);
+    if (submenu.style.display === "block") {
+        submenu.style.display = "none";
+    } else {
+        submenu.style.display = "block";
+    }
+}
+
+function loadMenu() {
+    const menuContent = document.getElementById('menu-content');
+    let html = '';
+    data.categories.forEach(category => {
+        if (category.items.length === 1) {
+            html += `<a href="javascript:void(0)" onclick="loadContent('${category.items[0].id}')">${category.title}</a>`;
+        } else {
+            html += `<a href="javascript:void(0)" onclick="toggleSubmenu('${category.id}')">${category.title}</a>`;
+            html += `<div id="${category.id}" class="submenu" style="display: none;">`;
+            category.items.forEach(item => {
+                html += `<a href="javascript:void(0)" onclick="loadContent('${item.id}')" style="padding-left: 20px;">${item.title}</a>`;
+            });
+            html += `</div>`;
+        }
+    });
+    menuContent.innerHTML = html;
+}
 
 function toggleMenu() {
     const menu = document.getElementById("menu");
@@ -180,29 +246,9 @@ function toggleMenu() {
     }
 }
 
-function loadContent(id) {
-    const contentSection = document.getElementById('content-section');
-    const menuItem = data.menu.find(item => item.id === id);
-    
-    if (menuItem) {
-        contentSection.innerHTML = menuItem.content;
-        document.title = `이승기의 블로그 - ${menuItem.title}`;
-        document.getElementById('currentSection').innerText = menuItem.title;
-        // 탭 초기화
-        if (menuItem.id === 'portfolio') {
-            document.getElementById("defaultOpen").click();
-        }
-    }
-}
-
-function loadMenu() {
-    const menuContent = document.getElementById('menu-content');
-    let html = '';
-    data.menu.forEach(item => {
-        html += `<a href="javascript:void(0)" onclick="loadContent('${item.id}')">${item.title}</a>`;
-    });
-    menuContent.innerHTML = html;
-}
+document.getElementById("menuBtn").onclick = toggleMenu;
+loadMenu();
+loadContent('portfolio'); // 기본적으로 포트폴리오를 로드
 
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -217,7 +263,3 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }
-
-document.getElementById("menuBtn").onclick = toggleMenu;
-loadMenu();
-loadContent('portfolio'); // 기본적으로 포트폴리오를 로드
