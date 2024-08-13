@@ -144,53 +144,105 @@ const data = {
             ]
         },
         {
+            id: "bookRead",
+            title: "독서 기록",
+            items: [
+                {
+                    id: "bookRead1",
+                    title: "독서력 향상",
+                    content: `
+                        <section>
+                            <h2>책 읽는 것도 연습이 필요합니다</h2>
+                            <h3>책을 효과적으로 읽기 위해서는 몇 가지 중요한 방법을 알아야 합니다:</h3>
+                                <ul>
+                                    <li>독서 근육 강화: 눈과 머리의 시너지</li>
+                                    <li>메모하고 요약하는 능력</li>
+                                    <li>읽은 책의 내용을 기억하는 능력</li>
+                                </ul>
+
+                            <h3>이런 내용들은 당연하게 들릴 수 있지만, 이를 훈련할 수 있는 방법도 있습니다:</h3>
+                                <ul>
+                                    <li>한 페이지를 읽는 데 목표 시간을 설정하고, 스톱워치를 사용해 1페이지에 1분을 목표로 연습</li>
+                                    <li>한 줄을 읽을 때 벗어나지 않고 처음부터 끝까지 이동하는 연습</li>
+                                    <li>뜻을 파악하기 위해 연습하되, 이해가 안 되더라도 다음 줄로 넘어가는 연습</li>
+                                </ul>
+                        </section>
+
+                    `
+                }
+            ]
+        },
+        {
             id: "study",
             title: "공부 기록",
             items: [
                 {
                     id: "study1",
-                    title: "Swift 기초",
+                    title: "공부 기록 시작의 배경",
                     content: `
-                        <h2>Swift 기초</h2>
-                        <p>Swift의 기초 문법과 활용 방법을 정리한 내용입니다.</p>
-                        <h3>변수와 상수</h3>
-                        <p>Swift에서 변수와 상수를 사용하는 방법은 매우 간단합니다. 다음은 변수와 상수를 선언하는 예제입니다:</p>
-                        <pre><code class="language-swift">let constant = 10\nvar variable = 20</code></pre>
-                    ` 
+                        <h2>취업 준비</h2>
+                        <p>근 3개월간 취업 준비를 하며 다양한 회사에 이력서를 제출하며 안좋은 결과를 받았습니다.</p>
+                        <p>제가 얼마나 게을럿는지를 몸소 느끼며 기초부터 다시 탄탄하게 준비를 해야 겠다는 필요성을 느꼇습니다.</p>
+                        <p>그리하여 블로그에 공부 기록을 하기로 했습니다.</p>
+                        <p>기록과 함께 탄력을 얻기 위하여 F-lab에 등록하여 여정을 시작하게 되었습니다.</p> 
+                    `
                 },
                 {
                     id: "study2",
-                    title: "RxSwift 활용",
+                    title: "첫번째 날 Swift란",
                     content: `
-                        <h2>RxSwift 활용</h2>
-                        <p>RxSwift를 활용한 리액티브 프로그래밍 기법에 대한 내용입니다.</p>
-                        <h3>Observable과 Observer</h3>
-                        <p>RxSwift의 기본 개념인 Observable과 Observer에 대해 알아보겠습니다. 다음은 간단한 Observable 예제입니다:</p>
-                        <pre><code class="language-swift">let observable = Observable.just(1)\nobservable.subscribe { event in\n  print(event)\n}</code></pre>
-                    `
-                },
-                {
-                    id: "study3",
-                    title: "SwiftUI 기초",
-                    content: `
-                        <h2>SwiftUI 기초</h2>
-                        <p>SwiftUI를 이용한 UI 구성 방법을 설명합니다.</p>
-                        <h3>뷰와 레이아웃</h3>
-                        <p>SwiftUI에서 뷰와 레이아웃을 구성하는 방법을 살펴보겠습니다. 다음은 간단한 SwiftUI 뷰 예제입니다:</p>
-                        <pre><code class="language-swift">struct ContentView: View {\n  var body: some View {\n    Text("Hello, World!")\n  }\n}</code></pre>
+                        <section>
+                            <h2>Swift를 애플이 왜 만들었을까?</h2>
+                            <p>Swift 언어는 여러 이유로 개발되었습니다:</p>
+                                <ul>
+                                    <li>개발자 유입을 증가시키기 위해: 현대적인 언어를 선호하는 새로운 개발자들이 Swift에 매력을 느낄 것입니다.</li>
+                                    <li>진입장벽이 낮고 성능이 뛰어나다는 애플의 발표가 있었습니다. 그러나 언어가 발전함에 따라 점점 기능이 늘어나면서 진입장벽이 높아지고 있습니다.</li>
+                                </ul>
+
+                            <h2>함수형 프로그래밍이란 무엇일까?</h2>
+                            <p>함수형 프로그래밍은 함수 자체를 객체처럼 사용할 수 있는 프로그래밍 패러다임을 말합니다.</p>
+
+                            <h2>딕셔너리와 배열의 차이점은 무엇일까?</h2>
+                                <ul>
+                                    <li><strong>배열:</strong> 인덱스와 값으로 구성됩니다.</li>
+                                    <li><strong>딕셔너리:</strong> 키와 값으로 구성됩니다.</li>
+                                </ul>
+                            <p>딕셔너리는 해시 알고리즘을 사용하여 성능이 더 좋고, 배열은 순서가 있지만 딕셔너리는 순서가 없습니다.</p>
+                            <p>탐색, 추가, 제거 시 복잡도(Big O notation)가 다릅니다.</p>
+
+                            <h2>첫 수업 소감</h2>
+                            <p>첫 수업을 듣고 책을 읽을 때 깊이 생각하고 정리하는 습관을 들여야겠다는 필요성을 느꼈습니다. 다음 수업에서는 더욱 유려하게 진행될 수 있도록 준비해가고 싶습니다. 😊</p>
+</section>
+
+                        
                     `
                 }
+
             ]
         }
     ]
 };
+
+/** 소스코드 
+ * <p>Swift에서 변수와 상수를 사용하는 방법은 매우 간단합니다. 다음은 변수와 상수를 선언하는 예제입니다:</p>
+                        <pre><code class="language-swift">let constant = 10\nvar variable = 20</code></pre> */
+
+let lastCategoryId = null;
 
 function loadItemContent(itemId) {
     const item = data.categories.flatMap(cat => cat.items).find(it => it.id === itemId);
     if (item) {
         const contentSection = document.getElementById('content-section');
         contentSection.innerHTML = item.content;
-        document.title = `이승기의 블로그 - ${item.title}`;
+
+        // 카테고리와 타이틀을 구분자로 결합
+        const category = data.categories.find(cat => cat.items.some(it => it.id === itemId));
+        if (category) {
+            document.title = `이승기의 블로그 - ${category.title} > ${item.title}`;
+        } else {
+            document.title = `이승기의 블로그 - ${item.title}`;
+        }
+
         document.getElementById('currentSection').innerText = item.title;
 
         // 탭 초기화
@@ -199,20 +251,32 @@ function loadItemContent(itemId) {
                 document.getElementById("defaultOpen").click();
             }, 0);
         }
+
         // Prism.js 코드 하이라이트 적용
         Prism.highlightAll();
+
+        // 뒤로가기 버튼 활성화
+        if (category && category.items.length > 1) {
+            document.getElementById('backBtn').style.display = 'block';
+        } else {
+            document.getElementById('backBtn').style.display = 'none';
+        }
     }
 }
 
 
+
 function loadContent(id, page = 1) {
+    lastCategoryId = id;  // 마지막 카테고리 ID 저장
+
     const contentSection = document.getElementById('content-section');
     let category = data.categories.find(cat => cat.id === id);
 
     if (category) {
         if (category.items.length === 1) {
-            // 하위 아이템이 1개일 경우 바로 로드
+            // 하위 아이템이 1개일 경우 바로 로드하고 뒤로가기 버튼을 숨김
             loadItemContent(category.items[0].id);
+            document.getElementById('backBtn').style.display = 'none';
         } else {
             // 하위 아이템이 여러 개일 경우 페이징 처리
             const itemsPerPage = 10;
@@ -238,23 +302,16 @@ function loadContent(id, page = 1) {
             contentSection.innerHTML = content;
             document.title = `이승기의 블로그 - ${category.title}`;
             document.getElementById('currentSection').innerText = category.title;
-        }
-    } else {
-        const item = data.categories.flatMap(cat => cat.items).find(it => it.id === id);
-        if (item) {
-            contentSection.innerHTML = item.content;
-            document.title = `이승기의 블로그 - ${item.title}`;
-            document.getElementById('currentSection').innerText = item.title;
 
-            // 탭 초기화
-            if (item.id === 'portfolio') {
-                setTimeout(() => {
-                    document.getElementById("defaultOpen").click();
-                }, 0);
-            }
-            // Prism.js 코드 하이라이트 적용
-            Prism.highlightAll();
+            // 뒤로가기 버튼 숨기기
+            document.getElementById('backBtn').style.display = 'none';
         }
+    }
+}
+
+function goBackToCategory() {
+    if (lastCategoryId) {
+        loadContent(lastCategoryId);  // 마지막 카테고리 리스트로 돌아가기
     }
 }
 
@@ -295,7 +352,7 @@ function toggleMenu() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("menuBtn").onclick = toggleMenu;
     loadMenu();
     loadContent('portfolio'); // 기본적으로 포트폴리오를 로드

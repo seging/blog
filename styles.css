@@ -91,3 +91,8 @@ code {
 .pagination a:hover {
     background-color: #ddd;
 }
+
+#backBtn {
+    display: block;
+    margin: 10px 0;
+}
