@@ -156,7 +156,7 @@ const data = {
                         <h3>변수와 상수</h3>
                         <p>Swift에서 변수와 상수를 사용하는 방법은 매우 간단합니다. 다음은 변수와 상수를 선언하는 예제입니다:</p>
                         <pre><code class="language-swift">let constant = 10\nvar variable = 20</code></pre>
-                    `
+                    ` 
                 },
                 {
                     id: "study2",
@@ -185,20 +185,16 @@ const data = {
     ]
 };
 
-function loadContent(id) {
-    const contentSection = document.getElementById('content-section');
-    let menuItem;
-    for (const category of data.categories) {
-        menuItem = category.items.find(item => item.id === id);
-        if (menuItem) break;
-    }
-    
-    if (menuItem) {
-        contentSection.innerHTML = menuItem.content;
-        document.title = `이승기의 블로그 - ${menuItem.title}`;
-        document.getElementById('currentSection').innerText = menuItem.title;
+function loadItemContent(itemId) {
+    const item = data.categories.flatMap(cat => cat.items).find(it => it.id === itemId);
+    if (item) {
+        const contentSection = document.getElementById('content-section');
+        contentSection.innerHTML = item.content;
+        document.title = `이승기의 블로그 - ${item.title}`;
+        document.getElementById('currentSection').innerText = item.title;
+
         // 탭 초기화
-        if (menuItem.id === 'portfolio') {
+        if (item.id === 'portfolio') {
             setTimeout(() => {
                 document.getElementById("defaultOpen").click();
             }, 0);
@@ -207,6 +203,62 @@ function loadContent(id) {
         Prism.highlightAll();
     }
 }
+
+
+function loadContent(id, page = 1) {
+    const contentSection = document.getElementById('content-section');
+    let category = data.categories.find(cat => cat.id === id);
+
+    if (category) {
+        if (category.items.length === 1) {
+            // 하위 아이템이 1개일 경우 바로 로드
+            loadItemContent(category.items[0].id);
+        } else {
+            // 하위 아이템이 여러 개일 경우 페이징 처리
+            const itemsPerPage = 10;
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const itemsToShow = category.items.slice(startIndex, endIndex);
+
+            let content = `<h2>${category.title}</h2><ul>`;
+            itemsToShow.forEach(item => {
+                content += `<li><a href="javascript:void(0)" onclick="loadItemContent('${item.id}')">${item.title}</a></li>`;
+            });
+            content += `</ul>`;
+
+            const totalPages = Math.ceil(category.items.length / itemsPerPage);
+            if (totalPages > 1) {
+                content += '<div class="pagination">';
+                for (let i = 1; i <= totalPages; i++) {
+                    content += `<a href="javascript:void(0)" onclick="loadContent('${category.id}', ${i})">${i}</a> `;
+                }
+                content += '</div>';
+            }
+
+            contentSection.innerHTML = content;
+            document.title = `이승기의 블로그 - ${category.title}`;
+            document.getElementById('currentSection').innerText = category.title;
+        }
+    } else {
+        const item = data.categories.flatMap(cat => cat.items).find(it => it.id === id);
+        if (item) {
+            contentSection.innerHTML = item.content;
+            document.title = `이승기의 블로그 - ${item.title}`;
+            document.getElementById('currentSection').innerText = item.title;
+
+            // 탭 초기화
+            if (item.id === 'portfolio') {
+                setTimeout(() => {
+                    document.getElementById("defaultOpen").click();
+                }, 0);
+            }
+            // Prism.js 코드 하이라이트 적용
+            Prism.highlightAll();
+        }
+    }
+}
+
+
 
 function toggleSubmenu(id) {
     const submenu = document.getElementById(id);
@@ -222,18 +274,15 @@ function loadMenu() {
     let html = '';
     data.categories.forEach(category => {
         if (category.items.length === 1) {
-            html += `<a href="javascript:void(0)" onclick="loadContent('${category.items[0].id}')">${category.title}</a>`;
+            html += `<a href="javascript:void(0)" onclick="loadItemContent('${category.items[0].id}')">${category.title}</a>`;
         } else {
-            html += `<a href="javascript:void(0)" onclick="toggleSubmenu('${category.id}')">${category.title}</a>`;
-            html += `<div id="${category.id}" class="submenu" style="display: none;">`;
-            category.items.forEach(item => {
-                html += `<a href="javascript:void(0)" onclick="loadContent('${item.id}')" style="padding-left: 20px;">${item.title}</a>`;
-            });
-            html += `</div>`;
+            html += `<a href="javascript:void(0)" onclick="loadContent('${category.id}', 1)">${category.title}</a>`;
         }
     });
     menuContent.innerHTML = html;
 }
+
+
 
 function toggleMenu() {
     const menu = document.getElementById("menu");
@@ -246,9 +295,12 @@ function toggleMenu() {
     }
 }
 
-document.getElementById("menuBtn").onclick = toggleMenu;
-loadMenu();
-loadContent('portfolio'); // 기본적으로 포트폴리오를 로드
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("menuBtn").onclick = toggleMenu;
+    loadMenu();
+    loadContent('portfolio'); // 기본적으로 포트폴리오를 로드
+});
+
 
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
