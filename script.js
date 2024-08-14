@@ -212,9 +212,79 @@ const data = {
 
                             <h2>첫 수업 소감</h2>
                             <p>첫 수업을 듣고 책을 읽을 때 깊이 생각하고 정리하는 습관을 들여야겠다는 필요성을 느꼈습니다. 다음 수업에서는 더욱 유려하게 진행될 수 있도록 준비해가고 싶습니다. 😊</p>
-</section>
-
+                        </section>
                         
+                    `
+                },
+                {
+                    id: "study3",
+                    title: "멀티쓰레드 환경에서 동시에 여러 쓰레드가 동일한 자원에 접근할 때란",
+                    content: `
+                        <section>
+                            <h2> 여러 쓰레드가 동일한 자원에 접근할 때란 </h2>
+                            <p>경쟁 상태(Race Condition)라 부릅니다.</p>
+                            
+                            <h2>경쟁 상태란?</h2>
+                            <p>경쟁 상태는 두 개 이상의 쓰레드가 동일한 데이터를 동시에 수정하려고 할 때 발생합니다. 이로 인해 예상치 못한 결과나 데이터의 무결성 문제를 일으킬 수 있습니다. 예를 들어, 두쓰레드가 동시에 같은 변수를 수정하려고 할 때, 하나의 쓰레드가 변경한 값이 다른 쓰레드에 의해 덮어씌워질 수 있습니다.</p> 
+                            
+                            <h2>경쟁 상태의 사례</h2>
+                            <h3>은행 계좌 잔액 수정:</h3>
+                            <p>두 명의 사용자가 동시에 동일한 은행 계좌에서 돈을 출금하는 상황</p>
+                                <ul>
+                                    <li>1)쓰레드 1이 잔액을 확인하고 출금을 시작합니다.</li> 
+                                    <li>2)쓰레드 2도 잔액을 확인하고 출금을 시작합니다.</li>
+                                    <li>3)쓰레드 1이 출금을 완료하고 잔액을 갱신합니다.</li>
+                                    <li>4)쓰레드 2가 이미 오래된 잔액을 바탕으로 출금을 완료하고, 잔액을 다시 갱신합니다.</li>
+                                </ul>
+                            <h2>Swift 경쟁 상태 예제</h2>
+                            <p>아래 예제는 Swift에서 경쟁 상태를 설명하기 위한 은행 계좌 출금 코드입니다:</p>
+    
+                            <pre><code class="language-swift">
+                            import Foundation
+
+                            class BankAccount {
+                                private var balance: Int = 1000
+                                // 잔액 조회
+                                func getBalance() -> Int {
+                                    return balance
+                                }
+                                // 출금 메서드
+                                func withdraw(amount: Int) {
+                                    let currentBalance = getBalance()
+                                    // 출금 중간에 다른 쓰레드가 잔액을 변경하는 경쟁 상태를 시뮬레이션하기 위해 딜레이를 줍니다.
+                                    Thread.sleep(forTimeInterval: Double.random(in: 0.1...0.5))
+        
+                                    if currentBalance >= amount {
+                                        balance = currentBalance - amount
+                                        print("성공적으로 \(amount)원 출금, 남은 잔액: \(balance)원")
+                                    } else {
+                                        print("잔액 부족으로 \(amount)원 출금 실패, 현재 잔액: \(balance)원")
+                                    }
+                                }
+                            }
+
+                            let account = BankAccount()
+                            // 두 개의 쓰레드를 생성하여 동시에 출금 시도
+                            let queue = DispatchQueue(label: "bank.queue", attributes: .concurrent)
+
+                            queue.async {
+                                account.withdraw(amount: 700)
+                            }
+
+                            queue.async {
+                                account.withdraw(amount: 700)
+                            }
+
+                            Thread.sleep(forTimeInterval: 2)
+                            </code></pre>
+                            <p><strong>이 코드의 설명:</strong></p>
+                            <p><strong>BankAccount</strong> 클래스는 은행 계좌를 나타내며, 초기 잔액은 1000원으로 설정되어 있습니다.</p>
+                            <p><strong>withdraw</strong> 메서드는 주어진 금액을 계좌에서 출금합니다.</p>
+                            <p>두 개의 쓰레드가 동시에 <strong>withdraw(amount: 700)</strong>을 호출하여 700원을 출금하려고 시도합니다.</p>
+                            <p>쓰레드 1이 잔액을 확인하고 출금을 시작할 때, 쓰레드 2도 동시에 같은 금액을 출금하려고 하면 경쟁 상태가 발생할 수 있습니다.</p>
+                            <p>만약 두 쓰레드가 동시에 출금을 완료하면, 실제로 잔액이 충분하지 않음에도 불구하고 두 번의 출금이 모두 성공할 수 있습니다.</p>
+
+                        </section>
                     `
                 }
 
