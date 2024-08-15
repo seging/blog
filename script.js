@@ -291,12 +291,12 @@ const data = {
             ]
         },// 공부 기록
         {
-            id:"",
+            id:"seminar",
             title:"세미나",
             items:[
                 {
-                    id:"",
-                    title:"",
+                    id:"seminar1",
+                    title:"세미나",
                     content:`
                         <section>
     <h2>세미나</h2>
