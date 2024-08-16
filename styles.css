@@ -96,3 +96,16 @@ code {
     display: block;
     margin: 10px 0;
 }
+
+pre {
+    background-color: #f5f5f5; /* 코드 배경색 */
+    padding: 10px; /* 코드 블록 내부 여백 (기존보다 줄임) */
+    border-radius: 5px; /* 코드 블록 테두리 둥글게 */
+    overflow: auto; /* 코드 블록 내부 스크롤 */
+    font-size: 10px; /* 코드 블록의 폰트 크기 조정 */
+}
+
+code {
+    font-family: Consolas, "Courier New", monospace; /* 코드 폰트 설정 */
+    font-size: 10px; /* 코드 폰트 크기 조정 */
+}

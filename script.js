@@ -240,42 +240,42 @@ const data = {
                             <p>아래 예제는 Swift에서 경쟁 상태를 설명하기 위한 은행 계좌 출금 코드입니다:</p>
     
                             <pre><code class="language-swift">
-                            import Foundation
+            import Foundation
 
-                            class BankAccount {
-                                private var balance: Int = 1000
-                                // 잔액 조회
-                                func getBalance() -> Int {
-                                    return balance
-                                }
-                                // 출금 메서드
-                                func withdraw(amount: Int) {
-                                    let currentBalance = getBalance()
-                                    // 출금 중간에 다른 쓰레드가 잔액을 변경하는 경쟁 상태를 시뮬레이션하기 위해 딜레이를 줍니다.
-                                    Thread.sleep(forTimeInterval: Double.random(in: 0.1...0.5))
+            class BankAccount {
+                private var balance: Int = 1000
+            // 잔액 조회
+            func getBalance() -> Int {
+                return balance
+            }
+            // 출금 메서드
+            func withdraw(amount: Int) {
+            let currentBalance = getBalance()
+            // 출금 중간에 다른 쓰레드가 잔액을 변경하는 경쟁 상태를 시뮬레이션하기 위해 딜레이를 줍니다.
+            Thread.sleep(forTimeInterval: Double.random(in: 0.1...0.5))
         
-                                    if currentBalance >= amount {
-                                        balance = currentBalance - amount
-                                        print("성공적으로 \(amount)원 출금, 남은 잔액: \(balance)원")
-                                    } else {
-                                        print("잔액 부족으로 \(amount)원 출금 실패, 현재 잔액: \(balance)원")
-                                    }
-                                }
-                            }
+            if currentBalance >= amount {
+                balance = currentBalance - amount
+                print("성공적으로 \(amount)원 출금, 남은 잔액: \(balance)원")
+            } else {
+                print("잔액 부족으로 \(amount)원 출금 실패, 현재 잔액: \(balance)원")
+            }
+        }
+    }
 
-                            let account = BankAccount()
-                            // 두 개의 쓰레드를 생성하여 동시에 출금 시도
-                            let queue = DispatchQueue(label: "bank.queue", attributes: .concurrent)
+    let account = BankAccount()
+    // 두 개의 쓰레드를 생성하여 동시에 출금 시도
+    let queue = DispatchQueue(label: "bank.queue", attributes: .concurrent)
 
-                            queue.async {
-                                account.withdraw(amount: 700)
-                            }
+    queue.async {
+        account.withdraw(amount: 700)
+    }
 
-                            queue.async {
-                                account.withdraw(amount: 700)
-                            }
+    queue.async {
+    account.withdraw(amount: 700)
+}
 
-                            Thread.sleep(forTimeInterval: 2)
+Thread.sleep(forTimeInterval: 2)
                             </code></pre>
                             <p><strong>이 코드의 설명:</strong></p>
                             <p><strong>BankAccount</strong> 클래스는 은행 계좌를 나타내며, 초기 잔액은 1000원으로 설정되어 있습니다.</p>
@@ -285,6 +285,109 @@ const data = {
                             <p>만약 두 쓰레드가 동시에 출금을 완료하면, 실제로 잔액이 충분하지 않음에도 불구하고 두 번의 출금이 모두 성공할 수 있습니다.</p>
 
                         </section>
+                    `
+                },
+                {
+                    id:"study4",
+                    title:"Swift의 변수, 상수 이해하기",
+                    content:`
+                    <h3>let과 var의 차이점</h3>
+                    <p>1.var와 let을 나누는 기준은 무엇인가?</p>
+                    <ul>
+                        <li>변수가 가르키는 값을 바꾸는게(mutation) 가능한가 가능하지 않은가가 기준</li>
+                    </ul>
+                    <p>2.struct와 class가 mutation을 나누는 기준은 무엇인가?</p>
+                    <ul>
+                        <li>Struct에서 mutation이 발생하는 범위는 해당 인스턴스 내에 국한되며, 다른 복사본이나 원본은 영향을 받지 않습니다.</li>
+                        <li>Class에서는 mutation이 발생할 때 그 변경 사항이 해당 인스턴스를 참조하는 모든 곳에 적용됩니다.</li>
+                    </ul>
+                    <p>3.값 타입과 참조타입이라는 것이 영향을 미치는가?</p>
+                    <ul>
+                        <li>값 타입과 참조타입이 상수일 경우 두가지 다 초기화가 불가능합니다.</li>
+                        <li>값 타입의 경우 상수일 경우 인스턴스 값을 변경 할 수 없습니다.</li>
+                        <li>Struct 인스턴스의 속성을 변경하면 실제로는 그 인스턴스의 복사본이 변경됩니다. 이는 Struct가 복사본을 통해 전달되기 때문입니다</li>
+                        <li>Class 인스턴스의 속성을 변경하면, 그 인스턴스의 모든 참조자가 변경된 상태를 공유하게 됩니다. 이는 Class가 참조로 전달되기 때문입니다.</li>
+                    </ul>
+                    <p>4.객체의 속성을 바꿀때 class와 struct에서는 각각 어떤 일이 일어나는가??</p>
+                    <ul>
+                        <li>값 타입의 경우 인스턴스를 변경하거나 새롭운 참조값을 할당하면 새로운 변수값을 만들게 됩니다.</li>
+                        <li>참조 타입의 경우 인스턴스를 변경하면 해당 참조를 가진 변수들의 인스턴스도 같이 변경됩니다.</li>
+                    </ul>
+    
+                    <pre><code class="language-swift">
+struct S1 {
+       var name: String
+}
+
+class C1 {
+    var name: String = ""
+}
+//1. 객체가 변수인 경우
+var s1:S1 = S1(name: "test2")
+var s2:S1 = s1
+s1 = S1(name: "test2")
+s1.name = "test1" // struct가 변수일 때는 프로퍼티 값을 변경할 수 있다.
+
+print(s1.name)
+print(s2.name) // S1구조체의 원본만 수정된다.(구조체는 값타입이기 때문에 복사본으로 넘겨준다.)
+
+var c1:C1 = C1()
+var c2:C1 = c1
+c1 = C1()
+c1.name = "test"
+
+print(c1.name)
+print(c2.name) // C1클래스의 원본과 할당받은 c2변수도 같이 수정된다.(클래스는 참조타입이기 떄문에 참조로 전달되며 동일한 인스턴스를 공유힌다.)
+//1. 객체가 상수인 경우
+let s3:S1 = S1(name: "")
+//s3 = S1(name: "") // 변경불가능 오류 발생 : Cannot assign to value: 's3' is a 'let' constant
+//s2.name = "test" // 변경불가능 오류 발생 : Cannot assign to property: 's2' is a 'let' constant
+
+print(s3.name)
+
+let c3:C1 = C1()
+//c3 = C1() // 할당 오류 발생: Cannot assign to value: 'c3' is a 'let' constant
+c3.name = "test" // class는 상수라도 변경이 가능
+
+print(c3.name)
+</code></pre>
+<table>
+  <thead>
+    <tr>
+      <th>객체 종류</th>
+      <th>선언 방식</th>
+      <th>객체의 속성을 바꿀 수 있는가?</th>
+      <th>변수가 가르키는 인스턴스를 바꿀 수 있는가?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>struct</td>
+      <td>var</td>
+      <td>예</td>
+      <td>예</td>
+    </tr>
+    <tr>
+      <td>class</td>
+      <td>var</td>
+      <td>예</td>
+      <td>예</td>
+    </tr>
+    <tr>
+      <td>struct</td>
+      <td>let</td>
+      <td>아니요</td>
+      <td>아니요</td>
+    </tr>
+    <tr>
+      <td>class</td>
+      <td>let</td>
+      <td>예</td>
+      <td>아니요</td>
+    </tr>
+  </tbody>
+</table>
+
                     `
                 }
 
@@ -392,7 +495,8 @@ const data = {
 
                         
                     `
-                }
+                },
+                
             ]
         } // 세미나
     ]
