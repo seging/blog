@@ -186,7 +186,7 @@ const data = {
                         <p>그리하여 블로그에 공부 기록을 하기로 했습니다.</p>
                         <p>기록과 함께 탄력을 얻기 위하여 F-lab에 등록하여 여정을 시작하게 되었습니다.</p> 
                     `
-                },
+                },// 공부 기록 시작의 배경
                 {
                     id: "study2",
                     title: "첫번째 날 Swift란",
@@ -215,7 +215,7 @@ const data = {
                         </section>
                         
                     `
-                },
+                },// 첫번째 날 Swift란
                 {
                     id: "study3",
                     title: "멀티쓰레드 환경에서 동시에 여러 쓰레드가 동일한 자원에 접근할 때란",
@@ -286,7 +286,7 @@ Thread.sleep(forTimeInterval: 2)
 
                         </section>
                     `
-                },
+                },// 멀티쓰레드 환경에서 동시에 여러 쓰레드가 동일한 자원에 접근할 때란
                 {
                     id:"study4",
                     title:"Swift의 변수, 상수 이해하기",
@@ -387,9 +387,93 @@ print(c3.name)
     </tr>
   </tbody>
 </table>
+`
+                },// Swift의 변수, 상수 이해하기
+                {
+                    id:"study",
+                    title:"HashTable 구현",
+                    content:`
+                    <section>
+                    <h3>HashTable이란?</h3>
+                    <ul>
+                        <li>키를 값에 매핑할 수 있는 구조인,<a href="#footnote1" id="note1">연관 배열<sup>[1]</sup></a> 추가에 사용되는 자료 구조 이다.</li>
+                        <li><a href="#footnote2" id="note2">해시 함수<sup>[2]</sup></a>를 사용하여 색인(index)을 버킷(bucket)이나 슬롯(slot)의 배열로 계산한다.</li>
+                    </ul>
+                    <img src="images/hashTable.png" alt="hashTable">
 
+                    <h3>구현에 필요한 것은?</h3>
+                    <ul>
+                        <li>hashable프로토콜을 준수하는 키 저장</li>
+                        <li>저장 된 키에 고유한 배열의 인덱스</li>
+                        <li>배열의 해당 인덱스에 값 저장,조회,삭제,수정</li>
+                        <li>인덱스값이 중복될 경우 대처(해시 충돌)</li>
+                    </ul>
+                    
+                        <pre><code class="language-swift">
+struct HashTable<Key:Hashable,Value> {
+    
+    var bucket:[(key,Value?)?] 
+    var tableSize:Int
+
+    init(size: Int = 11) { // 초깃값을 줄 때 소수로 주어야 해시 충돌을 줄이는 데 도움이 됩니다.
+        self.tableSize = size
+        self.bucket = Array(repeating: nil, count: tableSize)
+    }
+
+    // 해시 인덱스를 계산하는 함수
+    func hashIndex(k:Key) -> Int {
+        return abs(k.hashValue) % bucket.count
+    }
+
+    mutating func insert(k:Key, v:Value) {
+        var index = hashIndex(k: k)
+
+        // 충돌이 발생할 경우 다음 빈 슬롯을 찾습니다.
+        while bucket[index] != nil {
+            index = (index + 1) % bucket.count
+        }
+
+        bucket[index] = (k,v)
+        
+    }
+
+    mutating func value(k: Key) -> Value? {
+        var index = hashIndex(k: k)
+        
+        while let entry = bucket[index] {
+            if entry.0 == k {
+                return entry.1
+            }
+            index = (index + 1) % bucket.count
+        }
+
+        return bucket[index]
+    }
+
+    mutating func remove(k: Key) {
+        var index = hashIndex(k: k)
+
+        while let entry = bucket[index] {
+            if entry.0 == k {
+                bucket[index] = nil
+            }
+            index = (index + 1) % bucket.count
+        } 
+    }
+}
+                    </code><pre>
+                    
+                    <h3>원하는 성능이 안나와서 보강이 필요할 듯하다,,</h3>
+                        
+                    
+                    </section>
+
+                     <section>
+<p id="footnote1">[1] 연관 배열 : 키 하나와 값 하나가 연관되어 있으며 키를 통해 연관되는 값을 얻을 수 있다. map,dictionary 이라고 부른다. <a href="#note1">↑</a></p>
+<p id="footnote2">[2] 해시 함수 : 해시 알고리즘이라고도 부른다. 임의의 길이의 데이터를 고정된 길이의 데이터로 매핑하는 함수이다. 해시 함수에 의해 얻어지는 값은 해시 값, 해시 코드, 해시 체크섬 또는 간단하게 해시라고 한다. 그 용도 중 하나는 해시 테이블이라는 자료구조에 사용되며, 매우 빠른 데이터 검색을 위한 컴퓨터 소프트웨어에 널리 사용된다  <a href="#note2">↑</a></p>
+</section>   
                     `
-                }
+                }// HashTable 구현
 
             ]
         },// 공부 기록
@@ -399,11 +483,10 @@ print(c3.name)
             items:[
                 {
                     id:"seminar1",
-                    title:"세미나",
+                    title:"F-Lab 취업/이직 세미나",
                     content:`
                         <section>
-    <h2>세미나</h2>
-
+ 
     <h3>평가 기준</h3>
     <ul>
         <li>평소에 얼마나 잘 했는가? (잔디를 깔거나, 블로그를 열심히 썼다거나)</li>
@@ -495,8 +578,7 @@ print(c3.name)
 
                         
                     `
-                },
-                
+                }
             ]
         } // 세미나
     ]
