@@ -189,7 +189,7 @@ const data = {
                 },// 공부 기록 시작의 배경
                 {
                     id: "study2",
-                    title: "첫번째 날 Swift란",
+                    title: "FLab강의 첫번째 날(1/2)",
                     content: `
                         <section>
                             <h2>Swift를 애플이 왜 만들었을까?</h2>
@@ -215,7 +215,7 @@ const data = {
                         </section>
                         
                     `
-                },// 첫번째 날 Swift란
+                },// FLab강의 첫번째 날(1/2)
                 {
                     id: "study3",
                     title: "멀티쓰레드 환경에서 동시에 여러 쓰레드가 동일한 자원에 접근할 때란",
@@ -390,7 +390,7 @@ print(c3.name)
 `
                 },// Swift의 변수, 상수 이해하기
                 {
-                    id:"study",
+                    id:"study5",
                     title:"HashTable 구현",
                     content:`
                     <section>
@@ -473,7 +473,54 @@ struct HashTable<Key:Hashable,Value> {
 <p id="footnote2">[2] 해시 함수 : 해시 알고리즘이라고도 부른다. 임의의 길이의 데이터를 고정된 길이의 데이터로 매핑하는 함수이다. 해시 함수에 의해 얻어지는 값은 해시 값, 해시 코드, 해시 체크섬 또는 간단하게 해시라고 한다. 그 용도 중 하나는 해시 테이블이라는 자료구조에 사용되며, 매우 빠른 데이터 검색을 위한 컴퓨터 소프트웨어에 널리 사용된다  <a href="#note2">↑</a></p>
 </section>   
                     `
-                }// HashTable 구현
+                },// HashTable 구현
+                {
+                   id:"study6",
+                   title:"FLab강의 두번째 날(2/2)",
+                   content:`
+                        <section>
+                            <h3>3가지 과제를 시작으로 수업을 시작했습니다.</h3>
+                            <p>과제 내용은 아래 버튼으로 이동하여 내용을 볼 수 있습니다.</p>
+                            <ul>
+                                <li><button onclick="loadItemContent('study3')">멀티쓰레드 환경에서 동시에 여러 쓰레드가 동일한 자원에 접근할 때란</button></li>
+                                <li><button onclick="loadItemContent('study4')">Swift의 변수, 상수 이해하기</button></li>
+                                <li><button onclick="loadItemContent('study5')">HashTable 구현</button></li>
+                            </ul>
+                            
+
+                            <h2>어떻게 경쟁상태를 방지할 수 있을까요?</h2>
+                            <img src="images/큐의 종류와 특징.png" alt="큐의 종류와 특징">
+                            <ul>
+                                <li>nsLock을 사용해서 하나의 쓰레드만 접근하도록 합니다.</li>
+                                <li>@synchronized를 사용해서 하나의 쓰레드만 접근하도록 합니다.</li>
+                                <li>xcode의 Edit Scheme -> Run에서 Thread Sanitizer를 활성화 하면 빌드 시 경쟁 상태가 발생하는 코드를 찾아서 방지할 수 있도록 해줍니다.</li>
+                                <li>operationQueue.maxConcurrentOperationCount를 1로 제한하여 직렬 큐로 설정하여 방지합니다.</li>
+                                <li>DispatchSemaphore를 사용해서 하나의 쓰레드만 접근하도록 합니다.</li>
+                                <li>DispatchQueue의 기본(SerialQueue)의 Sync로 실행 시켜 하나의 쓰레드만 접근하도록 합니다.</li>
+                                <li>DispatchQueue async의 인자중 flags:DispatchWorkItemFlags = []의 Flag중 barrier 변수를 넣어주면 변수를 할당받은 스레드에 다른 스레드가 접근 하지 않습니다.</li> 
+                            </ul>
+
+                            <h2>스위프트에서 자료구조는 무엇이 있을까요?</h2>    
+                            <p>Class, Struct, Enum이 있습니다.</p>
+
+                            <h2>클로저와 함수의 차이는 무엇인가요?</h2>
+                            <p>면접에서 많이 들었던 질문,, 항상 틀린 대답을 해온 것 같습니다.</p>
+                            <p>정답은 클로저는 이름이 없는 익명함수이고 함수는 이름이 있다는 것,, 개념적으로는 같은 존재 였습니다.</p>
+
+                            <h2>@escaping은 언제 붙여야할까요?</h2>
+                            <ul>
+                                <li>비동기 작업이 완료된 후 클로저를 호출할 경우, 함수가 종료된 후에도 클로저를 호출해야 합니다. 이경우 @escaping이 필요합니다.</li>
+                                <li>함수 내부에서 클로저를 프로퍼티에 저장해야 할 때도 @escaping이 필요합니다.</li>
+                                <li>클래스의 인스턴스에 클로저를 저장할 때도 @escaping을 사용해야합니다.</li>
+                            </ul>
+
+                            <h2>두 번째 수업 소감</h2>
+                            <p>수업 중 기술 질문에 대한 답변으로, 이론적인 개념을 하나의 예시 설명했더니, 강사님께서 지적해주셨습니다.</p>
+                            <p>기술 질문에 대한 답변은 <strong>정의</strong>로 대답해야 한다는 것, 당연한 사실이지만 이렇게 직접 듣고 나니 더 와닿았습니다.</p>
+                            <p>앞으로는 질문에 대한 답변을 정의를 중심으로 명확하게 하도록 노력하겠습니다! 😊</p>
+                        </section>
+                   ` 
+                },// FLab강의 두번째 날(2/2)
 
             ]
         },// 공부 기록
