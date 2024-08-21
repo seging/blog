@@ -521,7 +521,27 @@ struct HashTable<Key:Hashable,Value> {
                         </section>
                    ` 
                 },// FLab강의 두번째 날(2/2)
+                {
+                    id:"study7",
+                    title:"ARC란?",
+                    content:`
+                        <h3>두번째 수업 중 ARC에대한 설명을 하며 A밖에 모른다는 코멘트를 받았습니다.😂😂</h3>
+                        <p>부족한점을 명확하게 찾기 위해서 A.R.C 세가지로 나눠서 정리해 보았습니다</p>
 
+                        <p><strong>A: Automatic (자동)</strong></p>
+                        <p>자동: Automatic은 ARC가 객체의 메모리 할당과 해제를 자동으로 수행한다는 것을 의미합니다.</p>
+                        
+                        <p><strong>R: Reference (참조)</strong></p>
+                        <p>참조: Reference는 객체에 대한 참조를 의미합니다. ARC는 참조를 추적해서 객체가 언제 메모리에서 해제될지 결정합니다.</p>
+
+                        <p><strong>C: Counting (카운팅)</strong></p>
+                        <p>카운팅: Counting은 참조 횟수를 세는 과정을 말합니다. ARC는 각 객체에 대해 몇 개의 참조가 존재하는지 추적합니다.</p>
+
+                        <h2>ARC 전체 요약:</h2>
+                        <p>ARC는 자동으로 참조횟수를 카운팅하여 객체의 메모리관리(할당 및 해제)를 수행하는 시스템입니다.</p>
+
+                    `
+                }
             ]
         },// 공부 기록
         {
