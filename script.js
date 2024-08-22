@@ -523,7 +523,7 @@ struct HashTable<Key:Hashable,Value> {
                 },// FLab강의 두번째 날(2/2)
                 {
                     id:"study7",
-                    title:"ARC란?",
+                    title:"ARC와 GC란? 그리고 그차이는??",
                     content:`
                         <h3>두번째 수업 중 ARC에대한 설명을 하며 A밖에 모른다는 코멘트를 받았습니다.😂😂</h3>
                         <p>부족한점을 명확하게 찾기 위해서 A.R.C 세가지로 나눠서 정리해 보았습니다</p>
@@ -541,7 +541,45 @@ struct HashTable<Key:Hashable,Value> {
                         <p>ARC는 자동으로 참조횟수를 카운팅하여 객체의 메모리관리(할당 및 해제)를 수행하는 시스템입니다.</p>
 
                     `
-                }
+                },// ARC란
+                {
+                    id:"study8",
+                    title:"Optional의 구조란?",
+                    content:`
+                        <h3>수업 중 Optional의 구조는 어떻게 구성되어있는가에 대한 질문을 받고 그에대한 글을 작성하게 되었습니다.</h3>
+                        <p>정의 : 옵셔널(Optional)은 값을 감싸거나 값이 없는 상태를 나타내는 타입입니다.</p>
+
+                        <pre><code class="language-swift">
+@frozen
+enum Optional<Wrapped> where Wrapped : ~Copyable {
+    // Swift 5.1 이후 도입된 변경 사항: @frozen 및 ~Copyable 제약 조건 추가
+    case none
+    case some(Wrapped)
+}
+
+// Swift 5.1 이전의 전통적인 Optional 구현 방식
+enum Optional<Wrapped> {
+    case none
+    case some(Wrapped)
+}
+
+                        </code></pre>
+
+                        <dl>
+                            <dt>Optional</dt>
+                            <dd>Enum으로 두 가지 경우를 가진 열거형입니다. Optional.none과 Optional.some(Wrapped)로 이루어져 있습니다.</dd>
+
+                            <dt>@frozen</dt>
+                            <dd>Swift 5.1에서 도입되었으며, enum이나 struct가 고정(frozen)되었음을 나타내는 어노테이션입니다. 이 어노테이션은 해당 타입의 구현이 이후 변경되지 않음을 의미합니다.</dd>
+
+                            <dt>Copyable</dt>
+                            <dd>Swift의 새로운 프로토콜로, 값을 복사할 수 있는 타입을 나타냅니다. 위 소스코드의 ~Copyable은 Wrapped 타입이 복사 가능하지 않음을 의미합니다.</dd>
+                        </dl>
+
+                        
+                    `                    
+                },// Optional의 구조란?
+                
             ]
         },// 공부 기록
         {
