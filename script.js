@@ -523,27 +523,201 @@ struct HashTable<Key:Hashable,Value> {
                 },// FLab강의 두번째 날(2/2)
                 {
                     id:"study7",
-                    title:"ARC와 GC란? 그리고 그차이는??",
+                    title:"ARC란?",
                     content:`
-                        <h3>두번째 수업 중 ARC에대한 설명을 하며 A밖에 모른다는 코멘트를 받았습니다.😂😂</h3>
+                        <h3>두번째 수업 중 ARC에대한 질문에 대한 답을 하며 A밖에 모른다는 코멘트를 받았습니다.😂😂</h3>
                         <p>부족한점을 명확하게 찾기 위해서 A.R.C 세가지로 나눠서 정리해 보았습니다</p>
 
-                        <p><strong>A: Automatic (자동)</strong></p>
-                        <p>자동: Automatic은 ARC가 객체의 메모리 할당과 해제를 자동으로 수행한다는 것을 의미합니다.</p>
-                        
-                        <p><strong>R: Reference (참조)</strong></p>
-                        <p>참조: Reference는 객체에 대한 참조를 의미합니다. ARC는 참조를 추적해서 객체가 언제 메모리에서 해제될지 결정합니다.</p>
+                        <dl>
+                            <dt><strong>A: Automatic (자동)</strong></dt>
+                            <dd>자동: Automatic은 ARC가 객체의 메모리 할당과 해제를 자동으로 수행한다는 것을 의미합니다.</dd>
 
-                        <p><strong>C: Counting (카운팅)</strong></p>
-                        <p>카운팅: Counting은 참조 횟수를 세는 과정을 말합니다. ARC는 각 객체에 대해 몇 개의 참조가 존재하는지 추적합니다.</p>
+                            <dt><strong>R: Reference (참조)</strong></dt>
+                            <dd>참조: Reference는 객체에 대한 참조를 의미합니다. ARC는 참조를 추적해서 객체가 언제 메모리에서 해제될지 결정합니다.</dd>
+
+                            <dt><strong>C: Counting (카운팅)</strong></dt>
+                            <dd>카운팅: Counting은 참조 횟수를 세는 과정을 말합니다. ARC는 각 객체에 대해 몇 개의 참조가 존재하는지 추적합니다.</dd>
+                        </dl>
+                        <h3>카운터가 쌓이는 과정(참조 횟수 증가)</h3>
+                        <pre><code class="language-swift">
+class Person {
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+        print("\(name) is being initialized")
+    }
+    
+    deinit {
+        print("\(name) is being deinitialized")
+    }
+}
+
+// 참조 횟수가 0에서 1로 증가
+var john: Person? = Person(name: "John Appleseed")
+// 참조 횟수가 1에서 2로 증가
+var anotherReference = john
+
+                        </code></pre>
+                        <ul>
+                            <li>Person 클래스의 인스턴스가 생성될 때 john변수가 할당 받으며 참조 카운터가 1증가합니다.</li>
+                            <li>anotherReference변수가 john을 가리키도록 할당되면, 같은 Person 인스턴스에 대한 참조 카운터가 2로 증가합니다.</li>
+                        </ul>
+
+                        <h3>카운터가 사라지는 과정(참조 횟수 감소)</h3>
+                        <pre><code class="language-swift">
+                        // 참조 횟수가 2에서 1로 감소
+anotherReference = nil
+// 참조 횟수가 1에서 0으로 감소, 이 시점에서 객체가 메모리에서 해제됨
+john = nil
+                        </code></pre>
+                        <ul>
+                            <li>anotherReference 변수가 nil을 할당 받으면 Person 인스턴스에 대한 참조 카운터가 2에서 1로 감소합니다.</li>
+                            <li>john변수도 nil을 할당 받으면 Person 인스턴스에 대한 참조 카운터가 0이 됩니다. 이순간 ARC에서 Person인스턴스를 메모리에서 해제하고 deinit메서드를 호출합니다.</li>
+                        </ul>
 
                         <h2>ARC 전체 요약:</h2>
                         <p>ARC는 자동으로 참조횟수를 카운팅하여 객체의 메모리관리(할당 및 해제)를 수행하는 시스템입니다.</p>
 
+                        <h2>약한 참조와 강한 참조</h2>
+                        <p>ARC는 강한 참조(strong reference)와 약한 참조(weak reference)를 사용해 메모리를 관리합니다:</p>
+                        <ul>
+                            <li><strong>강한 참조(Strong Reference):</strong> 기본적으로 모든 참조는 강한 참조입니다. 객체가 강한 참조를 가지면 참조 횟수가 증가하여 메모리에서 해제되지 않습니다. 두 객체가 서로를 강하게 참조하면 순환 참조(circular reference)가 발생할 수 있습니다.</li>
+                            <li><strong>약한 참조(Weak Reference):</strong> 약한 참조는 참조 횟수를 증가시키지 않습니다. 객체가 더 이상 필요하지 않으면 자동으로 메모리에서 해제되며, 이때 약한 참조는 nil로 설정됩니다. 이는 순환 참조를 방지하는 데 유용합니다.</li>
+                            <li><strong>미소유 참조(Unowned Reference):</strong> 약한 참조와 비슷하지만, 참조 대상이 항상 존재할 것이라고 가정할 때 사용됩니다. 대상이 해제되면 nil이 되지 않고, 접근 시 런타임 오류가 발생할 수 있습니다.</li>
+                        </ul>
+                        <h3>순환 참조 예시 및 해결 방법</h3>
+                        <p>다음은 두 클래스 간의 순환 참조를 보여주는 예시입니다:</p>
+
+                        <pre><code class="language-swift">
+class Person {
+    let name: String
+    var apartment: Apartment?
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    deinit {
+        print("\(name) is being deinitialized")
+    }
+}
+
+class Apartment {
+    let unit: String
+    var tenant: Person? // 강한 참조로 인해 순환 참조 발생
+    
+    init(unit: String) {
+        self.unit = unit
+    }
+    
+    deinit {
+        print("Apartment \(unit) is being deinitialized")
+    }
+}
+
+var john: Person? = Person(name: "John Appleseed")
+var unit4A: Apartment? = Apartment(unit: "4A")
+
+john?.apartment = unit4A
+unit4A?.tenant = john
+                        </code></pre>
+
+                        <p>위 코드에서는 Person과 Apartment 객체가 서로를 강하게 참조하고 있습니다. 이로 인해 둘 다 참조 횟수가 0이 되지 않아 메모리에서 해제되지 않습니다.</p>
+
+                        <h4>해결 방법:</h4>
+                        <p>이 문제를 해결하기 위해 약한 참조를 사용하여 순환 참조를 방지할 수 있습니다:</p>
+
+                        <pre><code class="language-swift">
+class Apartment {
+    let unit: String
+    weak var tenant: Person? // 약한 참조로 변경하여 순환 참조 해결
+    
+    init(unit: String) {
+        self.unit = unit
+    }
+}
+                        </code></pre>
+
+                        <p>이제 Apartment 클래스의 tenant 프로퍼티가 약한 참조로 설정되었으므로, Person 인스턴스가 메모리에서 해제될 때 Apartment 인스턴스도 메모리에서 정상적으로 해제됩니다. 이로써 순환 참조 문제를 해결할 수 있습니다.</p>
+
                     `
-                },// ARC란
+                },// ARC란???
                 {
                     id:"study8",
+                    title:"ARC와 GC의 차이는??",
+                    content:`
+                        <h3>ARC에대한 이해를 위해 GC와의 차이점을 공부하기로 했습니다!</h3>
+                        <p>기존에 알던 차이점으로는 컴파일타임과 런타임에 정적과 동적인 메모리 관리방식이 차이점으로 알고있는 정도였지만 생각보다 세세하게 알 수 있었습니다.</p>
+
+                        <dl>
+                            <dt>메모리 관리 방식</dt>
+                            <dd>
+                                <strong>ARC (Automatic Reference Counting):</strong> 
+                                ARC는 컴파일러가 코드에서 객체의 참조 횟수를 추적하여, 참조 횟수가 0이 되면 객체를 메모리에서 자동으로 해제하는 방식입니다. 
+                                Swift와 Objective-C에서 사용되며, 참조 횟수가 변할 때마다 메모리 관리가 이루어집니다. 
+                                객체를 참조하는 변수가 있을 때 참조 카운터가 증가하고, 참조가 해제되면 카운터가 감소합니다. 
+                                참조 카운터가 0이 되면 객체는 메모리에서 해제됩니다. ARC는 실시간으로 작동하여 객체의 메모리를 관리합니다.
+
+                                <br><br>
+
+                                <strong>GC (Garbage Collection):</strong> 
+                                GC는 런타임에 주기적으로 실행되는 메모리 관리 방식입니다. 
+                                Java, C# 등에서 사용되며, 프로그램이 실행되는 동안 가비지 컬렉터가 주기적으로 더 이상 사용되지 않는 객체를 탐색하여 메모리에서 해제합니다. 
+                                GC는 참조 그래프를 사용하여 접근할 수 없는 객체들을 찾아 메모리에서 제거하는 반면, 해제 시점은 예측할 수 없습니다. 
+                                이 방식은 메모리 누수를 방지하는 데 효과적이지만, 가비지 컬렉션이 실행될 때 일시적인 성능 저하가 발생할 수 있습니다.
+
+                                <br><br>
+
+                                <strong>차이점:</strong> 
+                                ARC는 참조 횟수에 따라 객체를 즉시 해제하는 반면, GC는 주기적으로 불필요한 객체를 정리합니다. 
+                                ARC는 실시간으로 작동해 메모리 해제 시점이 명확하지만, 순환 참조 문제가 발생할 수 있습니다. 
+                                반면 GC는 이러한 문제를 자동으로 해결하지만, 가비지 컬렉션이 실행되는 동안 성능 저하가 발생할 수 있습니다.
+                            </dd>
+                        </dl>
+                        
+                        <br><br>
+
+                        <dl>
+                            <dt>성능과 효율성</dt>
+                            <dd>
+                                <strong>ARC (Automatic Reference Counting):</strong>
+                                참조 횟수가 0이 되는 즉시 객체를 해제합니다. 메모리 누수가 적습니다.
+                                하지만, 순환 참조 문제가 발생할 수 있어, 이를 방지하기 위해 개발자가 약한 참조나 미소유 참조를 사용해야합니다.
+
+                                <br><br>
+                                
+                                <strong>GC (Garbage Collection):</strong>
+                                메모리 정리 작업을 주기적으로 실행합니다. 실행되는동안 성능 저하가 발생할 수 있습니다.
+                                메모리 관리가 완전히 자동화되어 개발자가 메모리 누수 문제를 직접 처리할 필요가 없습니다.
+                                객체를 즉시 해제하지 않기 때문에, 메모리 사용량이 불필요하게 증가할 수 있습니다.
+                            </dd>
+                        </dl>
+
+                        <br><br>
+
+                        <dl>
+                            <dt>메모리 누수와 순환 참조</dt>
+                            <dd>
+                                <strong>ARC (Automatic Reference Counting):</strong>
+                                순환 참조가 발생하면 참조 횟수가 0이 되지 않아 객체가 메모리에서 해제되지 않는 문제가 발생합니다.
+
+                                <br><br>
+
+                                <strong>GC (Garbage Collection):</strong>
+                                참조 그래프를 기반으로 객체 간의 참조를 분석하여, 더 이상 접근할 수 없는 객체를 해제합니다.
+                                순환 참조가 있어도, 접근할 수 없는 객체로 간주되면 자동으로 메모리에서 해제됩니다. 
+                            </dd>
+                        </dl>
+
+                        <br><br>
+
+
+
+                    `
+                },// ARC와 GC의 차이는??
+                {
+                    id:"study9",
                     title:"Optional의 구조란?",
                     content:`
                         <h3>수업 중 Optional의 구조는 어떻게 구성되어있는가에 대한 질문을 받고 그에대한 글을 작성하게 되었습니다.</h3>
