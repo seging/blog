@@ -753,7 +753,78 @@ enum Optional<Wrapped> {
                         
                     `                    
                 },// Optional의 구조란?
-                
+                {
+                    id:"study10",
+                    title:"RIBs란?(1/)",
+                    content:`
+                        <h3>프로젝트를 하기에 앞서 RIBs아키텍처를 사용하기위한 사전공부를 위한 글을 작성합니다.</h3>
+                        RIBs의 GIT에 나와있는 Readme를 읽어보면 처음에 RIBs의 개요가 나오는데 거기서 설명하는
+                        RIB에 대한 설명을 먼저 보고싶어서 RIB의 구성요소부터 살펴보기로 했습니다.
+                        
+                        <dl>
+                            <dt>RIB의 구성 요소</dt>
+                            <dd>
+                                    <img src="images/RIB의 구조.png" alt="RIB의 구조">
+                                    <p class="image-credit">
+    이미지 출처: <a href="https://github.com/uber/ribs/raw/assets/documentation">uber/RIBs</a>
+</p>
+                                    <strong>Interactor</strong>
+                                    <li>역할: 비즈니스 로직을 포함합니다. 여기서 Rx 구독을 수행하며, 상태 변경, 데이터 저장 위치를 결정합니다. 또한 하위 RIB으로(상속아님 RIBs끼리의 상하관계가있음) 첨부할지 결정합니다.</li>
+                                    <li>의존성: Router에 의존하여 자식 RIB을 추가하거나 제거할 수 있으며, 필요에따라 Presenter나 View와 상호작용하여 UI를 업데이트합니다. 또한, Component를 통해 의존성을 주입받아 사용할 수 있습니다.</li>
+                                    <strong>Router</strong>
+                                    <li>역할: Interactor의 상태나 이벤트를 감지하고, 그결과에 따라 하위 RIB을 첨부하거나 분리합니다.</li>
+                                    <li>의존성: Interactor와 상호작용하여 비즈니스 로직의 결과에 따라 자식 RIB을 동적으로 추가 또는 제거합니다. 또한, Builder에서 생성된 다른 구성 요소와도 협력합니다.</li>
+                                    <strong>Builder</strong>
+                                    <li>역할: RIB의 구성 요소 클래스와 자식 RIB의 빌더를 인스턴스화하는 역할을 합니다.</li>
+                                    <li>의존성: Component에 의존하여 필요한 의존성을 주입받고, 이를 기반으로 RIB의 구성 요소들을 생성합니다.</li>
+                                    <strong>Presenter - Optional</strong>
+                                    <li>역할: 비즈니스 모델을 뷰 모델로 번역하고 그 반대로 번역하는 역할을 합니다.</li>
+                                    <li>의존성: Interactor와 상호작용하여 데이터를 받아 뷰에 전달하지만, 뷰와의 직접적인 상호작용을 피할 수 있습니다.</li>
+                                    <strong>View(Controller) - Optional</strong>
+                                    <li>역할: UI작업을 합니다.</li>
+                                    <li>의존성: Interactor 또는 Presentor에서 전달된 데이터를 기반으로 UI를 업데이트 합니다.</li>
+                                    <strong>Component</strong>
+                                    <li>역할: RIB의 의존성을 관리합니다. 빌더가 RIB을 구성하는 다른 유닛을 인스턴스화하는 것을 도우며, 외부 의존성에 접근하고, RIB 자체가 생성한 의존성을 관리하며, 다른 RIB가 이들에게 접근하는 것을 제어합니다.</li>
+                                    <li>의존성: Builder와 상호작용하여 다른 구성 요소에 의존성을 주입합니다. 이를 통해 RIB간의 의존성을 관리하고, 필요한 경우 상위 RIB의 의존성을 하위 RIB에 전달할 수 있습니다.</li>
+                                </ul>
+                            </dd>
+                        </dl>
+
+                        <h4>구성 요소 간의 상호 의존성</h4>
+                        <p>RIBs 아키텍처에서 각 구성 요소들은 서로 밀접하게 상호작용하며 애플리케이션의 상태와 동작을 관리합니다. 다음은 주요 구성 요소들 간의 상호 의존성에 대한 설명입니다.</p>
+
+                        <h5>Interactor와 Router</h5>
+                        <p>인터랙터는 라우터에 의존하여 비즈니스 로직의 결과에 따라 자식 RIB를 동적으로 관리합니다. 라우터는 인터랙터의 지시에 따라 자식 RIB를 추가하거나 제거하며, 상위 및 하위 RIB 간의 관계를 유지합니다.</p>
+
+                        <h5>Presenter와 View (Optional)</h5>
+                        <p>프리젠터는 비즈니스 로직의 결과를 뷰에 전달하기 위해 사용됩니다. 하지만 프리젠터가 항상 필요한 것은 아니며, 간단한 RIB의 경우 인터랙터가 직접 뷰와 상호작용할 수 있습니다. 이러한 경우, 프리젠터는 생략될 수 있습니다.</p>
+
+                        <h5>Builder와 Component</h5>
+                        <p>빌더는 컴포넌트를 통해 의존성을 주입받아 RIB의 구성 요소들을 인스턴스화합니다. 컴포넌트는 RIB의 전체 의존성 관리를 담당하며, 빌더가 이를 활용하여 인터랙터, 라우터, 프리젠터, 뷰를 생성합니다.</p>
+
+                        <h5>Component와 RIBs 간의 의존성 관리</h5>
+                        <p>컴포넌트는 의존성을 관리하는 핵심 역할을 하며, 이를 통해 RIB 간의 결합도를 줄이고 모듈화를 촉진합니다. 상위 RIB의 의존성을 하위 RIB에 전달함으로써, 각 RIB는 독립적으로 동작할 수 있습니다.</p>
+
+                        <h4>결론</h4>
+                        <p>이 다이어그램은 Uber의 RIBs 아키텍처에서 구성 요소들이 어떻게 상호작용하며, 각각의 역할을 수행하는지를 시각적으로 설명합니다. 특히, 의존성 관리와 구성 요소 간의 분리된 역할이 RIBs의 핵심 개념이며, 이는 큰 규모의 애플리케이션에서 복잡한 상태 관리를 단순화하고 테스트 가능성을 높이는 데 중요한 역할을 합니다.</p>
+                    `
+
+                },// RIBs란?
+                {
+                    id:"study10",
+                    title:"RIBs란?(2/)",
+                    content:`
+                        
+                        <h3>RIBs의 정의</h3>
+                        RIBs는 Uber의 크로스 플랫폼 아키텍처 <strong>프레임워크!</strong>
+                        대규모 모바일 애플리케이션을 위해 설계되었습니다. Uber에서 아래와 같은 원칙을 따라서 설계했습니다.
+                        <ul>
+                            <li><strong>크로스 플랫폼 협업 장려:</strong> iOS와 AOS각각의 RIBs프레임워크 로직이 대부분 유사합니다.(공동으로 설계된 아키텍처를 공유 가능.)</li>
+                            <li><strong>전역 상태와 결정 최소화:</strong> </li>
+                        </ul>
+                    `
+
+                }// RIBs란?
             ]
         },// 공부 기록
         {

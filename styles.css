@@ -157,6 +157,12 @@ dd {
     padding-right: 10px; /* 설명의 우측 여백 */
 }
 
+dd img {
+    max-width: 100%; /* 이미지의 최대 너비를 부모인 dd 요소의 너비로 제한 */
+    height: auto; /* 이미지의 높이를 자동으로 조정하여 원본 비율 유지 */
+    display: block; /* 이미지 주위의 여백 제거 */
+    margin: 0 auto; /* 이미지가 중앙에 배치되도록 설정 */
+}
 
 dt::before {
     content: counter(section) "."; /* 번호 뒤에 점 추가 */
@@ -215,4 +221,11 @@ table, th, td {
         overflow-x: auto; /* 가로 스크롤 추가 */
         white-space: nowrap; /* 줄바꿈 없이 한 줄로 표시 */
     }
+}
+
+.image-credit {
+    font-size: 0.9em;
+    color: #555;
+    text-align: center;
+    margin-top: 10px;
 }
