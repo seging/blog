@@ -17,7 +17,7 @@ const data = {
                         <li>네오플러스: 2019.07 - 2020.06</li>
                         <li>B2 (프리랜서): 2020.09 - 2020.11</li>
                         <li>ICB: 2021.01 - 2022.10</li>
-                        <li>MDS: 2023.12 - 2024.02</li>
+                        <li>MDS Tech: 2023.12 - 2024.02</li>
                     </ul>
                 </section>
                 <section>
@@ -28,19 +28,25 @@ const data = {
                         <button class="tablinks" onclick="openTab(event, 'externalActivities')">대외활동</button>
                     </div>
                     <div id="companyProjects" class="tabcontent">
-                        <h3>네오플러스</h3>
-                        <h3>사내인트라넷 개발</h3>
-                        <p>휴가정보 및 사내 연락처 조회 가능. RESTful API를 이용한 서버 API 통신 개발.</p>
-                        <p><strong>사용 기술:</strong> Swift, SwiftyJSON, Alamofire, KeychainSwift, SnapKit, FSCalendar</p>
+                        <h3>MDS Tech</h3>
+                        <h3>파킹프렌즈 앱</h3>
+                        <p>소스 리팩토링, 유지보수, 이슈 대응, 기능 추가 및 개선 작업을 진행했습니다. 라이브러리 마이그레이션 작업도 포함되었습니다.</p>
+                        <p><strong>사용 기술:</strong> Swift, RxSwift</p>
+                        <p><strong>기간:</strong> 2023.01 ~ 2024.02</p>
+                        <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88/id1437488741">파킹프렌즈</a></p>
                         <div class="image-gallery">
-                            <img src="images/네오인트라넷-1.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
-                            <img src="images/네오인트라넷-2.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
-                            <img src="images/네오인트라넷-3.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
-                            <img src="images/네오인트라넷-4.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                            <img src="images/파킹프렌즈1.PNG" alt="MDS" onclick="openModal(this)">
+                            <img src="images/파킹프렌즈2.PNG" alt="MDS" onclick="openModal(this)">
                         </div>
-                        <h3>지아이티 - 글로벌 서비스 앱 개발</h3>
-                        <p>멕시코, 러시아, 인도 서비스 앱 개발, 언어팩 적용 및 화면 변경, 유지보수 작업.</p>
-                        <p><strong>사용 기술:</strong> Objective-C, Swift, Masonry, Firebase, Google Maps, FMDB</p>
+                        <h3>파킹프렌즈 파트너 앱</h3>
+                        <p>소스 리팩토링, 유지보수, 이슈 대응, 기능 추가 및 개선 작업을 진행했습니다.</p>
+                        <p><strong>사용 기술:</strong> React, Swift</p>
+                        <p><strong>기간:</strong> 2021.06 ~ 2024.02</p>
+                        <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88-%ED%8C%8C%ED%8A%B8%EB%84%88/id1456976566">파킹프렌즈 파트너</a></p>
+                        <div class="image-gallery">
+                            <img src="images/파킹프렌즈파트너1.PNG" alt="MDS" onclick="openModal(this)">
+                            <img src="images/파킹프렌즈파트너2.PNG" alt="MDS" onclick="openModal(this)">
+                        </div>
                         <h3>ICB</h3>
                         <h3>GOS 앱</h3>
                         <p>소스 리팩토링, 기능 추가 및 개선, 소스 이슈대응 등을 포함한 유지보수 작업.</p>
@@ -60,25 +66,19 @@ const data = {
                             <img src="images/Qrick3.PNG" alt="ICB" onclick="openModal(this)">
                             <img src="images/Qrick4.PNG" alt="ICB" onclick="openModal(this)">
                         </div>
-                        <h3>MDS</h3>
-                        <h3>파킹프렌즈 앱</h3>
-                        <p>소스 리팩토링, 유지보수, 이슈 대응, 기능 추가 및 개선 작업을 진행했습니다. 라이브러리 마이그레이션 작업도 포함되었습니다.</p>
-                        <p><strong>사용 기술:</strong> Swift, RxSwift</p>
-                        <p><strong>기간:</strong> 2023.01 ~ 2024.02</p>
-                        <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88/id1437488741">파킹프렌즈</a></p>
+                        <h3>네오플러스</h3>
+                        <h3>사내인트라넷 개발</h3>
+                        <p>휴가정보 및 사내 연락처 조회 가능. RESTful API를 이용한 서버 API 통신 개발.</p>
+                        <p><strong>사용 기술:</strong> Swift, SwiftyJSON, Alamofire, KeychainSwift, SnapKit, FSCalendar</p>
                         <div class="image-gallery">
-                            <img src="images/파킹프렌즈1.PNG" alt="MDS" onclick="openModal(this)">
-                            <img src="images/파킹프렌즈2.PNG" alt="MDS" onclick="openModal(this)">
+                            <img src="images/네오인트라넷-1.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                            <img src="images/네오인트라넷-2.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                            <img src="images/네오인트라넷-3.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                            <img src="images/네오인트라넷-4.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
                         </div>
-                        <h3>파킹프렌즈 파트너 앱</h3>
-                        <p>소스 리팩토링, 유지보수, 이슈 대응, 기능 추가 및 개선 작업을 진행했습니다.</p>
-                        <p><strong>사용 기술:</strong> React, Swift</p>
-                        <p><strong>기간:</strong> 2021.06 ~ 2024.02</p>
-                        <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88-%ED%8C%8C%ED%8A%B8%EB%84%88/id1456976566">파킹프렌즈 파트너</a></p>
-                        <div class="image-gallery">
-                            <img src="images/파킹프렌즈파트너1.PNG" alt="MDS" onclick="openModal(this)">
-                            <img src="images/파킹프렌즈파트너2.PNG" alt="MDS" onclick="openModal(this)">
-                        </div>
+                        <h3>지아이티 - 글로벌 서비스 앱 개발</h3>
+                        <p>멕시코, 러시아, 인도 서비스 앱 개발, 언어팩 적용 및 화면 변경, 유지보수 작업.</p>
+                        <p><strong>사용 기술:</strong> Objective-C, Swift, Masonry, Firebase, Google Maps, FMDB</p>
                         <h3>B2 - 강아샘통 앱</h3>
                         <p>앱 소스 리팩토링 및 기능 개선 작업을 진행.</p>
                         <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/%EA%B0%95%EC%95%84%EC%83%98%ED%86%B5/id1295938279">강아샘통</a></p>
@@ -755,7 +755,7 @@ enum Optional<Wrapped> {
                 },// Optional의 구조란?
                 {
                     id:"study10",
-                    title:"RIBs란?(1/)",
+                    title:"RIBs란?(1/2)",
                     content:`
                         <h3>프로젝트를 하기에 앞서 RIBs아키텍처를 사용하기위한 사전공부를 위한 글을 작성합니다.</h3>
                         RIBs의 GIT에 나와있는 Readme를 읽어보면 처음에 RIBs의 개요가 나오는데 거기서 설명하는
@@ -809,22 +809,232 @@ enum Optional<Wrapped> {
                         <p>이 다이어그램은 Uber의 RIBs 아키텍처에서 구성 요소들이 어떻게 상호작용하며, 각각의 역할을 수행하는지를 시각적으로 설명합니다. 특히, 의존성 관리와 구성 요소 간의 분리된 역할이 RIBs의 핵심 개념이며, 이는 큰 규모의 애플리케이션에서 복잡한 상태 관리를 단순화하고 테스트 가능성을 높이는 데 중요한 역할을 합니다.</p>
                     `
 
-                },// RIBs란?
+                },// RIBs란?(1/2)
                 {
                     id:"study10",
-                    title:"RIBs란?(2/)",
+                    title:"RIBs란?(2/2)",
                     content:`
                         
                         <h3>RIBs의 정의</h3>
                         RIBs는 Uber의 크로스 플랫폼 아키텍처 <strong>프레임워크!</strong>
                         대규모 모바일 애플리케이션을 위해 설계되었습니다. Uber에서 아래와 같은 원칙을 따라서 설계했습니다.
                         <ul>
-                            <li><strong>크로스 플랫폼 협업 장려:</strong> iOS와 AOS각각의 RIBs프레임워크 로직이 대부분 유사합니다.(공동으로 설계된 아키텍처를 공유 가능.)</li>
-                            <li><strong>전역 상태와 결정 최소화:</strong> </li>
+                            <strong>크로스 플랫폼 협업 장려</strong>
+                            <li>iOS와 AOS각각의 RIBs프레임워크 로직이 대부분 유사합니다.(공동으로 설계된 아키텍처를 공유 가능.)</li>
+                            <strong>전역 상태와 결정 최소화</strong>
+                            <li><a href="#footnote1" id="note1">전역 상태<sup>[1]</sup></a>를 최소화하여 예측할 수 없는 동작을 방지합니다.</li>
+                            <strong>테스트 가능성과 격리</strong>
+                            <li>RIB 클래스는 명확한 책임을 가지고 있어야합니다. 독릭접으로 테스트 가능해야 하며, 상위 RIB의 로직은 하위 RIB의 로직과 분리 되어 있어야 합니다.</li>
+                            <strong>개발자 생산성 도구</strong>
+                            <li>RIBs는 코드 생성, 정적 분석,런타임 통합 등을 지원하는 IDE 도구를 제공합니다.
+                                <ul>
+                                    코드 생성(Code Generation)
+                                    <li>RIBs 아키텍처를 적용한 프로젝트는 반복적이고 구조화된 패턴이 많이 사용됩니다. 이런 패턴을 쉽게 적용할 수 있도록, RIBs의 템플릿을 이용해 자동으로 코드를 생성하는 도구를 제공합니다.</li>
+                                    <li>예를 들어, 새로운 RIB을 생성할 때, 필요한 클래스(Interactor, Router, Builder, Component 등)를 자동을오 생성해주는 템플릿이 있습니다.</li>
+                                    정적 분석(Static Analysis)
+                                    <li>RIBs는 Xcode의 <a href="#footnote2" id="note2">정적 분석<sup>[2]</sup></a> 기능과 통합되어, 코드에서 발생할 수 있는 문제(예:메모리 누수, 잘못된 의존성 주입 등)를 미리 식별하고 경고합니다.</li>
+                                    런타임 통합(Runtime Integration)
+                                    <li>런타임 시 메모리 누수, 성능 문제 등을 추적할 수 있는 도구와 통합됩니다.</li>
+                                </ul>
+                            </li>
                         </ul>
+                        
+
+                        <section>
+                            <p id="footnote1">[1] 전역 상태 : 애플리케이션의 모든 부분에서 접근할 수 있는 상태(데이터)를 의미합니다.<a href="#note1">↑</a></p>
+                            <p id="footnote2">[2] 정적 분석 : 코드를 실행하기 전 코드의 잠재적인 문제를 자동으로 검토하고, 버그, 메모리 누수, 잘못된 논리 등을 찾아내는 도구입니다.<a href="#note2">↑</a></p>
+                        </section>
                     `
 
-                }// RIBs란?
+                },// RIBs란?(2/2)
+                {
+                    id:"study11",
+                    title:"RIBs tutorial1(1/2)",
+                    content:`
+                        <h3>RIBs를 실제로 설치해보고 튜토리얼을 진행하기로 했습니다.</h3>
+
+                        <pre><code>
+                            pod 'RIBs', '~> 0.9'
+                        </code></pre>
+                        Readme에 명시되어있는 버전인 0.9버전으로 설치 했습니다.
+                        튜토리얼은 총 5가지로 진행합니다.
+
+                        튜토리얼을 진행하기에 앞서 RIBs의 Xcode Template를 설치했습니다.
+                        <pre><code>
+                        $/install-xcode-template.sh
+                        </code></pre>
+
+                        <dl>
+                            <dt>첫 번째 RIB을 만들자</dt>
+                            <dd>
+                                <strong>RIB아키텍처와 관련 툴링을 사용하여 간단한 TicTacToe 게임을 빌드하게 됩니다.</strong>
+                                첫 번째 튜토리얼의 목표는 RIB의 다양한 부분을 이해하고, RIB가 서로 어떻게 상호 작용하고 통신 하는지 이해하는 것입니다.
+
+                                <strong>프로젝트 개요 및 초기 설정</strong>
+                                <ul>
+                                    <li>RIBs 튜토리얼에서 주어진 iOS 프로젝트는  두 개의 RIB(Routing, Interaction, Business logic)으로 구성되어 있습니다.</li>
+                                    <li><strong>Root RIB의 역할</strong></li>
+                                    <ul>
+                                        <li>앱이 실행되면 AppDelegate에서 Root RIB을 빌드하고 애플리케이션의 제어를 Root RIB에 넘깁니다.</li>
+                                        <pre><code class="language-swift">
+// AppDelegate.swift
+public var window: UIWindow?
+
+public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+                    let window = UIWindow(frame: UIScreen.main.bounds)
+                    self.window = window
+                    // Root RIB의 Builder클래스를 활용하여 빌드합니다.
+                    let launchRouter = RootBuilder(dependency: AppCopmonent()).build()
+                    self.launchRouter = launchRouter
+                    launchRouter.launch(from: window)
+
+                    return true
+}
+                                        </code></pre>
+
+                                        <li>Root RIB의 목적</li>
+                                        <ul>
+                                            <li>RIB 트리의 루트로서 역할을 합니다.</li>
+                                            <li>필요할 때 자식 RIB에게 제어를 넘깁니다.</li>
+                                        </ul>
+
+                                        <strong>RootBuilder가 전체적으로 어떻게 구성되어있는지 살펴보겠습니다.</strong>
+                                        <h3>1. RootDependency 프로토콜</h3>
+                                        <pre><code class="language-swift">
+// RootBuilder.swift
+protocol RootDependency: Dependency {
+    // TODO: Root RIB이 생성될 때 필요한 외부 의존성들을 이 프로토콜에 선언해야 합니다.
+}
+                                        </code></pre>
+                                        <ul>
+                                            <li><strong>역할</strong>: 프로토콜은 Root RIB가 필요로 하는 외부 의존성들을 정의합니다.</li>
+                                            <li><strong>Dependency 프로토콜 상속</strong>: RIBs에서 모든 의존성은 Dependency라는 기본 프로토콜을 상속받습니다. 위 프로토콜은 RIB가 생성될 때 필요한 외부 리소스들을 정의합니다.</li>
+                                        </ul>
+                                        <h3>RootComponent 클래스</h3>
+                                        <pre><code class="language-swift">
+// RootBuilder.swift
+final class RootComponent: Component<RootDependency> {
+    // TODO: 이 클래스 내에서만 사용되는 의존성들이 있다면, 이곳에 선언될 수 있습니다.
+}
+                                        </code></pre>
+                                        <ul>
+                                            <li><strong>역할</strong>: Root RIB의 의존성 관리와 객체 생성을 담당합니다.</li>
+                                            <li><strong>Component 클래스 상속</strong>: RootDependency를 통해 주입된 의존성들을 관리하고, RIB이 필요로 하는 내부 객체들을 생성하는 역할을 합니다.</li>
+                                        </ul>
+                                        <h3>RootBuildable 프로토콜</h3>
+                                        <pre><code class="language-swift">
+// RootBuilder.swift
+protocol RootBuildable: Buildable {
+    func build() -> LaunchRouting 
+}
+                                        </code></pre>
+                                        <ul>
+                                            <li><strong>역할</strong>: Root RIB을 빌드할 수 있는 기능을 정의하는 프로토콜입니다.</li>
+                                            <li><strong>Buildable 프로토콜 상속</strong>: RIBs 아키텍처에서 모든 빌더는 Buildable 프로토콜을 상속 받아야 합니다.</li>
+                                            <li><strong>build() 메서드</strong>: Root RIB의 라우팅 객체(LaunchRouting)를 반환합니다. LaunchRouting은 RIBs의 기본 라운팅 프로토콜로, RIB이 시작될 때 실행됩니다.</li>
+                                        </ul>
+                                        <h3>RootBuilder 클래스</h3>
+                                        <pre><code class="language-swift">
+// RootBuilder.swift
+final class RootBuilder: Builder<RootDependency>, RootBuildable {
+    override init(dependency: RootDependency) {
+        super.init(dependency: dependency)
+    }
+
+    func build() -> LaunchRouting {
+        let component = RootComponent(dependency: dependency)
+        let viewController = RootViewController()
+        let interactor = RootInteractor(presenter: viewController)
+
+        let loggedOutBuilder = LoggedOutBuilder(dependency: component)
+
+        return RootRouter(interactor: interactor,
+                          viewController: viewController,
+                          loggedOutBuilder: loggedOutBuilder)
+    }
+}
+                                        </code></pre>
+                                        <ul>
+                                            <li><strong>역할</strong>: RootBuilder는 Root RIB을 실제로 빌드하는 역할을 합니다.</li>
+                                            <li><strong>Builder 클래스 상속</strong>: Builder<RootDependency>를 상속하여, Root RIB이 필요로 하는 의존성을 주입받고 관리합니다.</li>
+                                            <li>빌드 과정</li>
+                                            <ul>
+                                                <li><strong>1. RootComponent 생성</strong>: RootComponent는 RootDependency를 기반으로 초기화되며, 이후에 필요한 의존성들을 관리합니다.</li>
+                                                <li><strong>2. ViewController 생성</strong>: RootViewController는 RIB의 뷰계층을 담당하는 객체입니다.</li>
+                                                <li><strong>3. Interactor 생성</strong>: RootInteractor는 비즈니스 로직을 담당하며, RootViewController를 프리젠터로 받습니다.</li>
+                                                <li><strong>4. LoggedOutBuilder 생성</strong>: LoggedOutBuilder는 LoggedOut RIB을 생성하는 빌더입니다. 여기서는 RootComponent를 의존성으로 받아 초기화됩니다.</li>
+                                                <li><strong>5. RootRouter 생성</strong>: 마지막으로 RootRouter가 생성되며, 이는 RootInteractor, RootViewController, 그리고 LoggedOutBuilder를 사용해 라우팅을 관리합니다.</li> 
+                                            </ul>
+                                        </ul>
+                                    </ul>
+                                </ul>
+                            </dd>
+                        </dl>
+
+                        <h5>다음페이지에서 계속...</h5>
+                    `
+                },// RIBs tutorial1(1/2)
+                {
+                    id:"study12",
+                    title:"RIBs tutorial1(2/2)",
+                    content:`
+                        <h3>앞 페이지에서는 앱 시작 시점 불러오는 첫 번째 RIB인 Root RIB에대해서 분석 해보았습니다.</h3>
+
+                        <dl>
+                            <dt>두 번째 RIB을 만들자</dt>
+                            <dd>
+                                <strong>TicTacToe 앱의 두 번째 RIB은 LoggedOut RIB이며, 로그인 인터페이스를 포함하고 인증 관련 이벤트를 관리해야 합니다.</strong>
+
+                                <strong>LoggedOut RIB 소개</strong>
+                                <ul>
+                                    <li><strong>LoggedOut RIB의 역할</strong></li>
+                                    <ul>
+                                        <li>로그인 인터페이스를 포함하고 인증 관련 이벤트를 관리합니다.</li>
+                                        <li>Root RIB이 앱에 대한 제어를 AppDelegate로부터 받은 후, 즉시 LoggedOut RIB에게 제어를 넘겨 로그인 폼을 표시합니다.</li>
+                                    </ul>
+                                </ul>
+
+                                <strong>LoggedOut RIB 준비</strong>
+                                <ul>
+                                    <li>LoggedOut 그룹을 열어보면, 코드 컴파일에 필요한 LoggedOut 소스가 비어있는 형태로 있는 DELETE_ME.swift파일이 있습니다. 이를 제거한 뒤 RIBs 템플릿으로 새로운 LoggedOut RIB을 생성합니다.</li>
+                                </ul>
+                            </dd>
+                        </dl>
+
+                        <br><br>
+
+                        <h3>만들어진 RIB이 실행되는 단계를 정리 해보겠습니다.</h3>
+
+                        <dl>
+                            <dt>LoggedOut RIB이 실행되는 단계</dt>
+                            <dd>
+                                <ul>
+                                    <li>만들어진 LoggedOut RIB은 Router가 finished loading 상태가 되었을때 호출되는 Router의 didLoad 메서드를 RootRouter 클래스의 override부분에서 실행하며 시작합니다.</li>
+                                    <pre><code class="language-swift">
+// RootRouter.swift
+
+private let loggedOutBuilder: LoggedOutBuildable
+
+private var loggedOut:ViewableRouting?
+
+override func didLoad() {
+    super.didLoad()
+
+    let loggedOut = loggedOutBuilder.build(withListener: interactor)
+    self.loggedOut = loggedOut
+    attachChild(loggedOut) //상위 RIB과 연결
+    viewController.present(viewController: loggedOut.viewControllable)
+}
+                                    </code></pre>
+                                </ul>
+                            </dd>
+                        </dl>
+                        
+
+
+                    `
+
+                }// RIBs tutorial1(2/2)
             ]
         },// 공부 기록
         {
