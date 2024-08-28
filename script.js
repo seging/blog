@@ -189,7 +189,7 @@ const data = {
                 },// 공부 기록 시작의 배경
                 {
                     id: "study2",
-                    title: "FLab강의 첫번째 날(1/2)",
+                    title: "FLab강의 첫번째 날",
                     content: `
                         <section>
                             <h2>Swift를 애플이 왜 만들었을까?</h2>
@@ -215,7 +215,7 @@ const data = {
                         </section>
                         
                     `
-                },// FLab강의 첫번째 날(1/2)
+                },// FLab강의 첫번째 날
                 {
                     id: "study3",
                     title: "멀티쓰레드 환경에서 동시에 여러 쓰레드가 동일한 자원에 접근할 때란",
@@ -476,7 +476,7 @@ struct HashTable<Key:Hashable,Value> {
                 },// HashTable 구현
                 {
                    id:"study6",
-                   title:"FLab강의 두번째 날(2/2)",
+                   title:"FLab강의 두번째 날",
                    content:`
                         <section>
                             <h3>3가지 과제를 시작으로 수업을 시작했습니다.</h3>
@@ -520,7 +520,7 @@ struct HashTable<Key:Hashable,Value> {
                             <p>앞으로는 질문에 대한 답변을 정의를 중심으로 명확하게 하도록 노력하겠습니다! 😊</p>
                         </section>
                    ` 
-                },// FLab강의 두번째 날(2/2)
+                },// FLab강의 두번째 날
                 {
                     id:"study7",
                     title:"ARC란?",
@@ -811,7 +811,7 @@ enum Optional<Wrapped> {
 
                 },// RIBs란?(1/2)
                 {
-                    id:"study10",
+                    id:"study11",
                     title:"RIBs란?(2/2)",
                     content:`
                         
@@ -848,7 +848,7 @@ enum Optional<Wrapped> {
 
                 },// RIBs란?(2/2)
                 {
-                    id:"study11",
+                    id:"study12",
                     title:"RIBs tutorial1(1/2)",
                     content:`
                         <h3>RIBs를 실제로 설치해보고 튜토리얼을 진행하기로 했습니다.</h3>
@@ -975,7 +975,7 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
                     `
                 },// RIBs tutorial1(1/2)
                 {
-                    id:"study12",
+                    id:"study13",
                     title:"RIBs tutorial1(2/2)",
                     content:`
                         <h3>앞 페이지에서는 앱 시작 시점 불러오는 첫 번째 RIB인 Root RIB에대해서 분석 해보았습니다.</h3>
@@ -1034,7 +1034,159 @@ override func didLoad() {
 
                     `
 
-                }// RIBs tutorial1(2/2)
+                },// RIBs tutorial1(2/2)
+                {
+                    id:"study14",
+                    title:"FLab강의 세번째 날",
+                    content:`
+                        <section>
+                            <h3>세번쨰 날도 과제에 대한 질문을 시작으로 수업을 시작했습니다.</h3>
+                            <p>과제 내용은 아래 버튼으로 이동하여 내용을 볼 수 있습니다.</p>
+                            <ul>
+                                <li><button onclick="loadItemContent('study6')">Closure escaping은 언제 쓰는지</button></li>
+                                <li><button onclick="loadItemContent('study8')">ARC 설명하기</button></li>
+                                <li><button onclick="loadItemContent('study10')">RIBs 이해하기</button></li>
+                            </ul>
+                            
+
+                            <h2>Closure escaping은 언제 쓰는지?</h2>
+                            지난번 수업 후기에서 정의로 대답한다는 생각을 가지고 이번 과제에 임했음에도,,
+                            선생님과 이야기하면서 저의 대답이 정의 보다는 예시로 밖에 보이지 않았습니다...ㅠ😂
+
+                            그 답에대한 출처는 구글링이였는데 그건 정확한 정의가 될 수없다는 코멘트를 받고
+                            https://docs.swift.org/swift-book/documentation/the-swift-programming-language/
+                            에서 정의를 찾으라는 말씀을 듣고 저의 부족함도 느꼈습니다 쩝쩝,, 너무 대충 대충 공부했구나 싶네요..
+                            구글링에 의존해서 남들이 쓴 블로그로만 정보를 찾은거같아요;😒 
+                            
+                            <dl>
+                                <dt>Closure @escaping의 정의</dt>
+                                <dd>
+                                    Closure가 함수에 인수로 전달되지만 함수가 반환된 후에 클로저가 호출될 경우 @escaping을 붙여야합니다.
+                                </dd>
+                            </dl>
+
+                            <h2>ARC 설명하기</h2>    
+                            ARC또한 마찬가지 지난번 수업 후기에서 정의로 대답한다는 것을 전혀 지키지 못했는데
+                            그동안 면접에서도 개발하면서도 제대로 알지 못하고 사용했던것같습니다, ㅋ;;
+                            메모리 관리에서 가장 중요한 것은 메모리를 어떻게 해제 시켜주는가
+
+                            <dl>
+                                <dt>ARC가 무엇인가요?</dt>
+                                <dd>
+                                    ARC는 Swift의 메모리 관리 방식입니다.
+                                    객체가 참조 될 경우 자동으로 참초 카운트를 1씩 증가시키며
+                                    객체가 해제 될 경우 자동으로 참조 카운트를 1씩 감소시킵니다.
+                                    객체는 nil이 할당 되거나 참조가 사라질경우 자동으로 감소시킵니다.
+                                    또한, 객체가 스코프에서 벗어날 경우(ex:함수내에서 생성된 객체가 함수가 반환되고 사라진다.)
+                                </dd>
+                            </dl>
+
+                            <h2>세 번째 수업 소감</h2>
+                            이후로는 프로젝트를 어떤식으로 구상할지에대한 이야기를 나누며 수업을 마쳤습니다.
+                            Swift를 처음부터 싹 훑으며 질의응답 방식으로 나누는 시간을 가졌는데,,
+                            지금 껏 느낀점은 정말 부족한게 많구나 그리고 이제 어떻게 공부해야겠구나
+                            이렇게 느꼈습니다. 수업을 진행할 수록 진도에 맞추는거에 대한 걱정 보다는
+                            공부해야 할 것이 한참 남았다는 걱정이 드네요.. 일단 주어진 거라도 열심히 해서
+                            FLab여정을 잘 따라가야 할 것 같습니다.😊😊
+                        </section>
+                    `
+                },// FLab강의 세번째 날
+                {
+                    id:"stduy15",
+                    title:"Weak, Unowned의 차이",
+                    content:`
+                        <h3>ARC의 메모리 해제에 대한 질문에대한 답변을 하면서 이어서나온 질문 입니다. </h3>
+                        약한 참조(weak reference)와 무소유 참조(unowned reference)는 Swift에서 메모리 관리를 위해 사용하는 두 가지 참조 방식입니다. 이 둘은 ARC(Automatic Reference Counting)에서 순환 참조(메모리 누수)를 방지하기 위해 사용되지만, 사용 방법과 동작 방식에는 차이가 있습니다.
+
+                        <strong>약한 참조 (weak)</strong>
+                        <pre><code class="language-swift">
+                        class Person {
+    var dog: Dog?
+}
+
+class Dog {
+    weak var owner: Person?
+}
+
+                        </code></pre>
+
+                        <ul>
+                            <li>약한 참조는 참조 대상 객체가 메모리에서 해제되면 자동으로 nil로 설정됩니다.</li>
+                            <li>약한 참조는 항상 옵셔널 타입(Optional)으로 선언되어야 합니다. 왜냐하면 참조 대상이 해제될 경우 참조가 nil이 되기 때문입니다.</li>
+                        </ul>
+
+                        <strong>무소유 참조 (unowned)</strong>
+                        <pre><code class="language-swift">
+class Person {
+    var creditCard: CreditCard?
+}
+
+class CreditCard {
+    unowned let owner: Person
+    init(owner: Person) {
+        self.owner = owner
+    }
+}
+
+                        </code></pre>
+
+                        <ul>
+                            <li>무소유 참조는 참조 대상 객체가 해제되더라도 nil로 설정되지 않습니다.</li>
+                            <li>무소유 참조는 참조 대상 객체가 항상 유효하다고 보장될 때 사용됩니다. 만약 참조 대상 객체가 해제되었는데도 무소유 참조에 접근하면 런타임 오류가 발생합니다.</li>
+                            <li>무소유 참조는 옵셔널이 아닌 non-optional 타입으로 선언됩니다.</li>
+                        </ul>
+                    `
+                },// Weak, Unowned의 차이
+                {
+                    id:"study16",
+                    title:"@escaping은 왜 명시적으로 써줘야하는가?",
+                    content:`
+                        <h3>@escaping의 정의에 대하여 질문에대한 답변을 하면서 이어서나온 질문 입니다.</h3>
+
+                        <strong>Non-escaping 클로저 예시</strong>
+                        <pre><code class="language-swift">
+                        
+func performNonEscapingClosure(closure: () -> Void) {
+    print("Non-escaping 클로저 시작")
+    closure()
+    print("Non-escaping 클로저 끝")
+}
+
+performNonEscapingClosure {
+    print("이 클로저는 함수 내부에서 바로 실행됩니다.")
+}
+
+                        </code></pre>
+
+                        <ul>
+                            <li>performNonEscapingClosure 함수는 non-escaping 클로저를 매개변수로 받습니다. 이 클로저는 함수 내에서 즉시 실행되며, 함수가 종료되면 메모리에서 제거됩니다.</li>
+                            <li>이 클로저는 함수의 스택 프레임 내에서만 실행되기 때문에 @escaping 키워드가 필요 없습니다.</li>
+                        </ul>
+
+                        <strong>Escaping 클로저 예시</strong>
+                        <pre><code class="language-swift">
+                        
+func performEscapingClosure(closure: @escaping () -> Void) {
+    print("Escaping 클로저를 저장합니다.")
+    DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+        print("Escaping 클로저 실행")
+        closure()
+    }
+    print("함수 종료, 클로저는 나중에 실행됩니다.")
+}
+
+performEscapingClosure {
+    print("이 클로저는 비동기적으로 함수가 종료된 후 실행됩니다.")
+}
+
+                        </code></pre>
+
+                        <ul>
+                            <li>performEscapingClosure 함수는 @escaping 클로저를 매개변수로 받습니다. 이 클로저는 함수가 종료된 후, DispatchQueue를 통해 비동기적으로 실행됩니다.</li>
+                            <li>이 경우 클로저는 힙에 저장되며, 함수의 스택 프레임이 제거된 이후에도 유지됩니다. 따라서 @escaping 키워드가 필요합니다.</li>
+                        </ul>
+                    `
+                }// @escaping은 왜 명시적으로 써줘야하는가?
             ]
         },// 공부 기록
         {
