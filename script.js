@@ -1443,11 +1443,11 @@ performEscapingClosure {
             ]
         }, // 세미나
         {
-            id:"history",
-            title:"문제해결",
+            id:"Struggle",
+            title:"삽질 일지",
             items:[
                 {
-                    id:"history1",
+                    id:"Struggle1",
                     title:"RIBs Template가 보이지 않는 문제",
                     content:`
                         spm을 로컬에 적용하며 드디어 개발준비를 끝마친 후에 기획을 어느정도 마무리한 뒤
@@ -1478,7 +1478,7 @@ performEscapingClosure {
                     `
                 }
             ]
-        },// History
+        },// 삽질 일지
     ]
 };
 
