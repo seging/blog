@@ -1441,7 +1441,44 @@ performEscapingClosure {
                     `
                 }
             ]
-        } // 세미나
+        }, // 세미나
+        {
+            id:"history",
+            title:"문제해결",
+            items:[
+                {
+                    id:"history1",
+                    title:"RIBs Template가 보이지 않는 문제",
+                    content:`
+                        spm을 로컬에 적용하며 드디어 개발준비를 끝마친 후에 기획을 어느정도 마무리한 뒤
+                        RIBs를 설치하며 설치한 Template를 이용해 개발을 다시 시작하려 했습니다.
+
+                        기존에 spm을 적용하기 전에는 설치된 Template가 잘 보이고 사용해서 첫 화면 띄우고 기분좋게 깃에 올려둔 상태였는데..
+
+                        아니 이게 무슨일인지 spm을 로컬에 적용하고서 spm내부에 New File로 Template를 사용하려는데 보이질 않는거에요!!!캬아아악😡🤬
+
+                        GPT자식도 모르고,, 열심히 구글링 해서 갓 스택오버플로의 천재님이,, 공유해준
+
+                        <pre><code>
+                        <key>SupportsSwiftPackage</key>
+                        <true/>
+                        </code></pre>
+                        
+                        이 키값을 사용할 Templates의 TemplateInfo.plist에 추가한뒤 true값을 주면
+                        spm에서 사용 가능한 Template이 되는 값이더라구요..
+
+                        문서를 찾아보려했으나..
+                        한방에 안나와서 바로 포기..
+
+                        새벽까지 삽질은 너무 힘들었네요...🥲
+
+                        요즘 글쓸때마다 쩜만 늘어나는느낌........
+
+                        화이팅 합시다잉 흑흑
+                    `
+                }
+            ]
+        },// History
     ]
 };
 
