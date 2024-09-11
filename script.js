@@ -1246,6 +1246,100 @@ performEscapingClosure {
                             <li>표준 키와 값 상수를 사용하여 오디오 처리 설정을 구성합니다.</li>
                         </ul>
 
+                        <h3>재생 (Playback)</h3>
+                        <ul>
+                            <strong>미디어 재생 (Media playback)</strong>
+                            <li>미디어 에셋과 중간 콘텐츠의 재생을 관리하고, 해당 콘텐츠를 인터페이스에서 어떻게 표시하는지와는 독립적으로 처리합니다.</li>
+    
+                            <strong>오프라인 재생 및 저장 (Offline playback and storage)</strong>
+                            <li>스트리밍된 콘텐츠를 디스크에 다운로드하여 오프라인 재생을 허용하고, 다운로드한 에셋을 자동으로 제거하는 정책을 정의합니다.</li>
+    
+                            <strong>스트리밍 및 AirPlay (Streaming and AirPlay)</strong>
+                            <li>AirPlay를 사용해 무선으로 다른 장치에 콘텐츠를 스트리밍하며, FairPlay 보호된 에셋이 포함된 요청을 처리합니다.</li>
+    
+                            <strong>샘플 버퍼 재생 (Sample buffer playback)</strong>
+                            <li>샘플 버퍼 스트림의 타이밍을 재생하고 동기화하는 사용자 정의 컨트롤러를 생성합니다.</li>
+                        </ul>
+
+                        <h3>캡처 (Capture)</h3>
+                        <ul>
+                            <strong>캡처 설정 (Capture setup)</strong>
+                            <li>내장된 카메라와 마이크, 외부 캡처 장치를 구성하여 미디어를 캡처합니다.</li>
+    
+                            <strong>사진 캡처 (Photo capture)</strong>
+                            <li>고품질의 정지 이미지, Live Photos, 그리고 사진 데이터를 캡처합니다.</li>
+    
+                            <strong>오디오 및 비디오 캡처 (Audio and video capture)</strong>
+                            <li>오디오와 비디오를 미디어 파일에 직접 캡처하거나, 미디어 샘플 버퍼에 대한 직접 접근을 위해 미디어 스트림을 캡처합니다.</li>
+    
+                            <strong>추가 데이터 캡처 (Additional data capture)</strong>
+                            <li>깊이 데이터와 메타데이터를 포함한 추가 데이터를 캡처하며, 여러 출력으로부터 캡처를 동기화합니다.</li>
+                        </ul>
+
+                        <h3>편집 (Editing)</h3>
+                        <ul>
+                            <strong>복합 에셋 (Composite assets)</strong>
+                            <li>여러 에셋의 트랙 및 트랙 세그먼트를 결합하여 재생하거나 처리할 수 있는 복합 에셋을 만듭니다.</li>
+    
+                            <strong>QuickTime 동영상 (QuickTime movies)</strong>
+                            <li>QuickTime 동영상 파일의 내용을 접근하고, 미디어 트랙의 샘플 수준 편집을 수행합니다.</li>
+    
+                            <strong>비디오 효과 (Video effects)</strong>
+                            <li>표준 비디오 전환 효과를 정의하고, 레이어 애니메이션을 미디어 타이밍과 동기화하며, 사용자 정의 비디오 합성기를 만듭니다.</li>
+    
+                            <strong>오디오 믹싱 (Audio mixing)</strong>
+                            <li>에셋의 지속 시간 동안 여러 오디오 트랙의 오디오 레벨을 믹싱하는 방법을 정의합니다.</li>
+                        </ul>
+
+                        <h3>오디오 (Audio)</h3>
+                        <ul>
+                            <strong>오디오 재생, 녹음, 처리 (Audio playback, recording, and processing)</strong>
+                            <li>오디오를 재생, 녹음, 처리하고 앱의 시스템 오디오 동작을 구성합니다.</li>
+    
+                            <strong>음성 합성 (Speech synthesis)</strong>
+                            <li>텍스트 문자열을 말하는 음성을 구성합니다.</li>
+                        </ul>
+
+                        <p>전부다 보고싶기도 하지만 분석은 저의 개발을 위해서 하는 것이기 때문에 아래의 iOS와 비디오 기능에 관련된 것만 분석해 보겠습니당ㅎㅎ</p>
+                        <h3>iOS의 비디오 관련 기술</h3>
+
+                        <h3>1. Media assets</h3>
+                        <p>파일과 스트림에서 비디오 자산을 로드하여 속성, 트랙, 임베디드 메타데이터를 검사합니다.</p>
+
+                        <h3>2. Media reading and writing</h3>
+                        <p>비디오에서 이미지를 읽어오고, 다른 형식으로 내보내며, 미디어 데이터의 샘플 수준 읽기 및 쓰기를 수행합니다.</p>
+
+                        <h3>3. Media types and utilities</h3>
+                        <p>AVFoundation에서 지원하는 비디오 콘텐츠 유형과 파일 형식을 식별합니다.</p>
+
+                        <h3>4. Video settings</h3>
+                        <p>표준 키와 값 상수를 사용하여 비디오 처리 설정을 구성합니다.</p>
+
+                        <h3>5. 미디어 재생 (Media Playback)</h3>
+                        <p>AVFoundation은 비디오 미디어 에셋과 중간 콘텐츠의 재생을 관리하는 기능을 제공합니다. 이를 통해 비디오 콘텐츠를 인터페이스에 어떻게 표시하는지와 상관없이 독립적으로 처리할 수 있습니다.</p>
+
+                        <h3>6. 오프라인 비디오 재생 및 저장 (Offline Video Playback and Storage)</h3>
+                        <p>스트리밍된 비디오 콘텐츠를 디스크에 다운로드하여 오프라인 상태에서도 재생할 수 있으며, 다운로드한 에셋을 자동으로 제거하는 정책을 정의할 수 있습니다.</p>
+
+                        <h3>7. 스트리밍 및 AirPlay (Streaming and AirPlay)</h3>
+                        <p>AirPlay를 통해 무선으로 다른 장치에 비디오 콘텐츠를 스트리밍하고, FairPlay로 보호된 콘텐츠를 처리하는 기능을 제공합니다.</p>
+
+                        <h3>8. 샘플 버퍼 재생 (Sample Buffer Playback)</h3>
+                        <p>샘플 버퍼 스트림의 타이밍을 재생하고 동기화하는 사용자 정의 컨트롤러를 생성하여 실시간 비디오 스트리밍을 효과적으로 처리할 수 있습니다.</p>
+
+                        <h3>9. 비디오 캡처 (Video Capture)</h3>
+                        <ul>
+                            <li><strong>캡처 설정 (Capture setup):</strong> 내장 카메라와 외부 캡처 장치를 구성하여 고품질의 비디오를 캡처할 수 있습니다.</li>
+                            <li><strong>사진 및 비디오 캡처 (Photo and video capture):</strong> 고품질의 비디오 및 사진을 캡처하거나 실시간 미디어 샘플 버퍼에 접근하여 직접 처리할 수 있습니다.</li>
+                            <li><strong>추가 데이터 캡처 (Additional data capture):</strong> 깊이 데이터와 메타데이터 등 추가 정보를 비디오와 함께 캡처하며, 여러 출력으로부터 데이터를 동기화합니다.</li>
+                        </ul>
+
+                        <h3>10. 비디오 편집 (Video Editing)</h3>
+                        <ul>
+                            <li><strong>복합 비디오 에셋 (Composite Video Assets):</strong> 여러 비디오 트랙과 세그먼트를 결합하여 하나의 복합 에셋으로 만들고, 이를 재생하거나 처리할 수 있습니다.</li>
+                            <li><strong>비디오 효과 (Video Effects):</strong> 비디오 전환 효과를 정의하고, 레이어 애니메이션을 미디어 타이밍과 동기화하며, 사용자 정의 비디오 합성기를 통해 고급 비디오 효과를 구현합니다.</li>
+                        </ul>
+
                         <section>
                             <p id="footnote1">[1] 오디오비주얼 미디어 : 소리(오디오)와 영상(비주얼)을 모두 포함하는 미디어 콘텐츠를 의미합니다. 쉽게 말해, 소리와 화면이 함께 있는 모든 종류의 콘텐츠를 오디오비주얼 미디어라고 부릅니다. <a href="#note1">↑</a></p>
                         </section>
@@ -1335,7 +1429,14 @@ performEscapingClosure {
                             공부하러 가보겠습니다..🥲  
                         </section>
                     `
-                }// FLab 강의 네번째 날
+                },// FLab 강의 네번째 날
+                {
+                    id:"study19",
+                    title:"",
+                    content:`
+                        <h3></h3>
+                    `
+                }
             ]
         },// 공부 기록
         {
