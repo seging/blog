@@ -35,8 +35,8 @@ const data = {
                         <p><strong>기간:</strong> 2023.01 ~ 2024.02</p>
                         <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88/id1437488741">파킹프렌즈</a></p>
                         <div class="image-gallery">
-                            <img src="images/파킹프렌즈1.PNG" alt="MDS" onclick="openModal(this)">
-                            <img src="images/파킹프렌즈2.PNG" alt="MDS" onclick="openModal(this)">
+                            <img src="/images/파킹프렌즈1.PNG" alt="MDS" onclick="openModal(this)">
+                            <img src="/images/파킹프렌즈2.PNG" alt="MDS" onclick="openModal(this)">
                         </div>
                         <h3>파킹프렌즈 파트너 앱</h3>
                         <p>소스 리팩토링, 유지보수, 이슈 대응, 기능 추가 및 개선 작업을 진행했습니다.</p>
@@ -44,8 +44,8 @@ const data = {
                         <p><strong>기간:</strong> 2021.06 ~ 2024.02</p>
                         <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/%ED%8C%8C%ED%82%B9%ED%94%84%EB%A0%8C%EC%A6%88-%ED%8C%8C%ED%8A%B8%EB%84%88/id1456976566">파킹프렌즈 파트너</a></p>
                         <div class="image-gallery">
-                            <img src="images/파킹프렌즈파트너1.PNG" alt="MDS" onclick="openModal(this)">
-                            <img src="images/파킹프렌즈파트너2.PNG" alt="MDS" onclick="openModal(this)">
+                            <img src="/images/파킹프렌즈파트너1.PNG" alt="MDS" onclick="openModal(this)">
+                            <img src="/images/파킹프렌즈파트너2.PNG" alt="MDS" onclick="openModal(this)">
                         </div>
                         <h3>ICB</h3>
                         <h3>GOS 앱</h3>
@@ -53,28 +53,28 @@ const data = {
                         <p><strong>사용 기술:</strong> Objective-C, Swift</p>
                         <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/gos/id1509217154">GOS</a></p>
                         <div class="image-gallery">
-                            <img src="images/GOS1.PNG" alt="ICB" onclick="openModal(this)">
-                            <img src="images/GOS2.PNG" alt="ICB" onclick="openModal(this)">
+                            <img src="/images/GOS1.PNG" alt="ICB" onclick="openModal(this)">
+                            <img src="/images/GOS2.PNG" alt="ICB" onclick="openModal(this)">
                         </div>
                         <h3>Qrick 앱</h3>
                         <p>소스 리팩토링, 기능 추가 및 개선, 소스 이슈대응 등을 포함한 유지보수 작업.</p>
                         <p><strong>사용 기술:</strong> Objective-C, Swift</p>
                         <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/us/app/qrick/id1331822769">Qrick</a></p>
                         <div class="image-gallery">
-                            <img src="images/Qrick1.PNG" alt="ICB" onclick="openModal(this)">
-                            <img src="images/Qrick2.PNG" alt="ICB" onclick="openModal(this)">
-                            <img src="images/Qrick3.PNG" alt="ICB" onclick="openModal(this)">
-                            <img src="images/Qrick4.PNG" alt="ICB" onclick="openModal(this)">
+                            <img src="/images/Qrick1.PNG" alt="ICB" onclick="openModal(this)">
+                            <img src="/images/Qrick2.PNG" alt="ICB" onclick="openModal(this)">
+                            <img src="/images/Qrick3.PNG" alt="ICB" onclick="openModal(this)">
+                            <img src="/images/Qrick4.PNG" alt="ICB" onclick="openModal(this)">
                         </div>
                         <h3>네오플러스</h3>
                         <h3>사내인트라넷 개발</h3>
                         <p>휴가정보 및 사내 연락처 조회 가능. RESTful API를 이용한 서버 API 통신 개발.</p>
                         <p><strong>사용 기술:</strong> Swift, SwiftyJSON, Alamofire, KeychainSwift, SnapKit, FSCalendar</p>
                         <div class="image-gallery">
-                            <img src="images/네오인트라넷-1.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
-                            <img src="images/네오인트라넷-2.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
-                            <img src="images/네오인트라넷-3.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
-                            <img src="images/네오인트라넷-4.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                            <img src="/images/네오인트라넷-1.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                            <img src="/images/네오인트라넷-2.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                            <img src="/images/네오인트라넷-3.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
+                            <img src="/images/네오인트라넷-4.jpg" alt="사내인트라넷 프로젝트" onclick="openModal(this)">
                         </div>
                         <h3>지아이티 - 글로벌 서비스 앱 개발</h3>
                         <p>멕시코, 러시아, 인도 서비스 앱 개발, 언어팩 적용 및 화면 변경, 유지보수 작업.</p>
@@ -94,15 +94,15 @@ const data = {
                         <p><strong>사용 기술:</strong> SwiftUI, MVVM</p>
                         <p><strong>앱스토어 링크:</strong> <a href="https://apps.apple.com/kr/app/nursetimer/id6477325168">Nurse Timer</a></p>
                         <div class="image-gallery">
-                            <img src="images/NurseTimer-아이폰1.PNG" alt="Nurse Timer" onclick="openModal(this)">
-                            <img src="images/NurseTimer-아이폰2.PNG" alt="Nurse Timer" onclick="openModal(this)">
-                            <img src="images/NurseTimer-아이폰3.PNG" alt="Nurse Timer" onclick="openModal(this)">
-                            <img src="images/NurseTimer-아이폰4.PNG" alt="Nurse Timer" onclick="openModal(this)">
-                            <img src="images/NurseTimer-아이폰5.PNG" alt="Nurse Timer" onclick="openModal(this)">
-                            <img src="images/NurseTimer-아이폰6.PNG" alt="Nurse Timer" onclick="openModal(this)">
-                            <img src="images/NurseTimer-애플워치1.jpg" alt="Nurse Timer" onclick="openModal(this)">
-                            <img src="images/NurseTimer-애플워치2.jpg" alt="Nurse Timer" onclick="openModal(this)">
-                            <img src="images/NurseTimer-애플워치3.jpg" alt="Nurse Timer" onclick="openModal(this)">
+                            <img src="/images/NurseTimer-아이폰1.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                            <img src="/images/NurseTimer-아이폰2.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                            <img src="/images/NurseTimer-아이폰3.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                            <img src="/images/NurseTimer-아이폰4.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                            <img src="/images/NurseTimer-아이폰5.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                            <img src="/images/NurseTimer-아이폰6.PNG" alt="Nurse Timer" onclick="openModal(this)">
+                            <img src="/images/NurseTimer-애플워치1.jpg" alt="Nurse Timer" onclick="openModal(this)">
+                            <img src="/images/NurseTimer-애플워치2.jpg" alt="Nurse Timer" onclick="openModal(this)">
+                            <img src="/images/NurseTimer-애플워치3.jpg" alt="Nurse Timer" onclick="openModal(this)">
                         </div>
                     </div>
                     <div id="externalActivities" class="tabcontent">
@@ -117,8 +117,8 @@ const data = {
                         <p><strong>사용 기술:</strong> AWS EC2, S3, Polly, SDK, DynamoDB, Swift, Alamofire</p>
                         <p><strong>시연 영상 링크:</strong> <a href="https://www.youtube.com/watch?v=cranY6sji4g">시연 영상 보기</a></p>
                         <div class="image-gallery">
-                            <img src="images/한이음1.PNG" alt="한이음" onclick="openModal(this)">
-                            <img src="images/한이음2.PNG" alt="한이음" onclick="openModal(this)">
+                            <img src="/images/한이음1.PNG" alt="한이음" onclick="openModal(this)">
+                            <img src="/images/한이음2.PNG" alt="한이음" onclick="openModal(this)">
                         </div>
                         <h3>Linxtelecom 외주 프로젝트</h3>
                         <p>기존 custom QR 코드 앱 유지보수 및 UI 개선 작업.</p>
@@ -126,8 +126,8 @@ const data = {
                         <p><strong>사용 기술:</strong> Objective-C</p>
                         <p><strong>앱스토어 링크:</strong> <a href="https://itunes.apple.com/kr/app/pufscanner/id1084263211?mt=8">Pufscanner</a></p>
                         <div class="image-gallery">
-                            <img src="images/퍼프스케너-1.jpg" alt="Linxtelecom" onclick="openModal(this)">
-                            <img src="images/퍼프스케너-2.jpg" alt="Linxtelecom" onclick="openModal(this)">
+                            <img src="/images/퍼프스케너-1.jpg" alt="Linxtelecom" onclick="openModal(this)">
+                            <img src="/images/퍼프스케너-2.jpg" alt="Linxtelecom" onclick="openModal(this)">
                         </div>
                         <h3>정보처리기사 취득</h3>
                         <p><strong>기간:</strong> 2018.08</p>
@@ -399,7 +399,7 @@ print(c3.name)
                         <li>키를 값에 매핑할 수 있는 구조인,<a href="#footnote1" id="note1">연관 배열<sup>[1]</sup></a> 추가에 사용되는 자료 구조 이다.</li>
                         <li><a href="#footnote2" id="note2">해시 함수<sup>[2]</sup></a>를 사용하여 색인(index)을 버킷(bucket)이나 슬롯(slot)의 배열로 계산한다.</li>
                     </ul>
-                    <img src="images/hashTable.png" alt="hashTable">
+                    <img src="/images/hashTable.png" alt="hashTable">
 
                     <h3>구현에 필요한 것은?</h3>
                     <ul>
@@ -489,7 +489,7 @@ struct HashTable<Key:Hashable,Value> {
                             
 
                             <h2>어떻게 경쟁상태를 방지할 수 있을까요?</h2>
-                            <img src="images/큐의 종류와 특징.png" alt="큐의 종류와 특징">
+                            <img src="/images/큐의 종류와 특징.png" alt="큐의 종류와 특징">
                             <ul>
                                 <li>nsLock을 사용해서 하나의 쓰레드만 접근하도록 합니다.</li>
                                 <li>@synchronized를 사용해서 하나의 쓰레드만 접근하도록 합니다.</li>
@@ -764,7 +764,7 @@ enum Optional<Wrapped> {
                         <dl>
                             <dt>RIB의 구성 요소</dt>
                             <dd>
-                                    <img src="images/RIB의 구조.png" alt="RIB의 구조">
+                                    <img src="/images/RIB의 구조.png" alt="RIB의 구조">
                                     <p class="image-credit">
     이미지 출처: <a href="https://github.com/uber/ribs/raw/assets/documentation">uber/RIBs</a>
 </p>
@@ -1192,7 +1192,7 @@ performEscapingClosure {
                     title:"AVFoundation 분석(1/5)",
                     content:`
                         <h3>AVFoundation이란?</h3>
-                        <img src="images/iOS의 AVFoundation 스택.png" alt="iOS의 AVFoundation 스택">
+                        <img src="/images/iOS의 AVFoundation 스택.png" alt="iOS의 AVFoundation 스택">
                         <p class="image-credit">
     이미지 출처: <a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html">developer.apple.com/library/archive/documentation</a>
                         <br>
@@ -1822,7 +1822,7 @@ performEscapingClosure {
     </ul>
 
     <h3>핵심 메시지</h3>
-    <img src="images/개발자 커리어의 악순환.png" alt="개발자 커리어의 악순환">
+    <img src="/images/개발자 커리어의 악순환.png" alt="개발자 커리어의 악순환">
     <p><strong>"장기적"</strong>으로 보고 <strong>"꾸준히"</strong> 하자. 개발자 커리어의 악순환에서 나오는 이미지, 딱 현재의 나를 나타내는 이미지다.</p>
     <p>조바심을 먼저 버리자. 이겨야 할 것은 바로 나 자신이다.</p>
     <p>반년 안에 네카라쿠배 못 간다. 유행하는 기술들 쓴다고 못 간다. 지금 같은 경우는 면접관들도 깐깐하게 본다. 회사에서도 요구하는 게 높아졌다. 하지만 장기적으로 꾸준하게 한 사람이 흔하지 않다.</p>
@@ -1877,7 +1877,7 @@ performEscapingClosure {
         
     </ul>
 
-    <img src="images/왼쪽보단 오른쪽을 봐야한다.png" alt="왼쪽보단 오른쪽을 봐야한다">
+    <img src="/images/왼쪽보단 오른쪽을 봐야한다.png" alt="왼쪽보단 오른쪽을 봐야한다">
     <p>회사에 맞춰 이력서를 쓰려면 <a href="#footnote1" id="note1">JD<sup>[1]</sup></a>를 보라.</p>
 
     <h3>면접에서의 대화 예시</h3>
@@ -2004,6 +2004,30 @@ performEscapingClosure {
                         <pre><code class="language-swift">let constant = 10\nvar variable = 20</code></pre> */
 
 let lastCategoryId = null;
+
+window.addEventListener('load', function() {
+    // 현재 URL의 경로를 확인
+    const path = window.location.pathname;
+    
+    // path에 따라 적절한 카테고리나 아이템 로드
+    if (path !== '/') {
+        const parts = path.split('/').filter(Boolean); // 빈 값 제거
+        
+        if (parts.length === 1) {
+            // 카테고리만 있을 때
+            const categoryId = parts[0];
+            loadContent(categoryId);
+        } else if (parts.length === 2) {
+            // 카테고리와 아이템 모두 있을 때
+            const categoryId = parts[0];
+            const itemId = parts[1];
+            loadItemContent(itemId);
+        }
+    } else {
+        // 기본 페이지 로드
+        loadContent('portfolio'); // 기본적으로 포트폴리오를 로드
+    }
+});
 
 function loadItemContent(itemId) {
     const item = data.categories.flatMap(cat => cat.items).find(it => it.id === itemId);
