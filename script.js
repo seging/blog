@@ -2007,6 +2007,7 @@ let lastCategoryId = null;
 
 function loadItemContent(itemId) {
     const item = data.categories.flatMap(cat => cat.items).find(it => it.id === itemId);
+    
     if (item) {
         const contentSection = document.getElementById('content-section');
         contentSection.innerHTML = item.content;
@@ -2014,10 +2015,12 @@ function loadItemContent(itemId) {
         const category = data.categories.find(cat => cat.items.some(it => it.id === itemId));
         if (category) {
             document.title = `이승기의 블로그 - ${category.title} > ${item.title}`;
-            window.history.pushState({}, '', `${category.id}/${item.id}`);
+            const newUrl = `/${category.id}/${item.id}`;
+            history.replaceState(null, null, newUrl);
         } else {
             document.title = `이승기의 블로그 - ${item.title}`;
-            window.history.pushState({}, '', `${item.id}`);
+            const newUrl = `/${item.id}`;
+            history.replaceState(null, null, newUrl);
         }
 
         document.getElementById('currentSection').innerText = item.title;
