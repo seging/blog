@@ -1436,7 +1436,371 @@ performEscapingClosure {
                     content:`
                         <h3></h3>
                     `
-                }// AVFoundation 분석)(2/5)
+                },// AVFoundation 분석)(2/5)
+                {
+                    id:"study20",
+                    title:"iOS File System에 대하여",
+                    content:`
+                        <section>
+                            <h3>프로젝트 진행 중 File System을 이용한 작업 중 어떤 방식이 좋을지에대한 문서를 작성하게 되었다.</h3>
+                            <p>iOS에서는 파일을 저장할 수 있는 여러 파일 시스템 위치들이 있으며, 각장소마다 접근권한, 데이터의 영속성, 보안수준 등 다양한 차이점과 장단점이 존재한다.</p>
+                            <p>iOS의 파일 시스템은 앱의 샌드박스 내에서 안전하게 동작하며, 앱 외부에 있는 다른 영역에 접근하는 것이 제한되어 있다.</p>
+                            <h2>iOS에서 작업가능한 방식으로는 다음과 같다.</h2>
+                            <dl>
+                                <dt>Documents Directory( 문서 디렉토리 )</dt>
+                                <ul>
+                                    <li><strong>설명</strong>: 사용자가 생성한 파일이나 앱의 중요한 데이터를 영구적으로 저장하는 위치.
+                                    사용자가 iCloud 백업을 할 때 자동으로 백업이 되는 방식.</li>
+                                    <li><strong>장점</strong>:
+                                        <br>
+                                        <ul>
+                                            <li>사용자가 iTunes 또는 Finder를 통해 파일을 직접 볼 수 있다.</li>
+                                            <li>iCloud에 자동으로 백업되므로 데이터의 안정성이 높다.</li>
+                                            <li>데이터가 앱 삭제 전까지 유지됨.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>단점</strong>:
+                                        <br>
+                                        <ul>
+                                            <li>사용자에게 노출될 가능성이 있으므로 보안이 중요한 파일은 암호화가 필요하다.</li>
+                                            <li>대용량 데이터를 저장할 경우, iCloud 백업이 길어진다.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <pre><code class="language-swift">
+    // 1. Documents Directory - 영구적인 사용자 데이터 저장
+    func saveToDocumentsDirectory(filename: String, content: String) {
+        if let documentsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = documentsDir.appendingPathComponent(filename)
+            do {
+                try content.write(to: fileURL, atomically: true, encoding: .utf8)
+                print("Saved to Documents Directory: \(fileURL.path)")
+            } catch {
+                print("Failed to save to Documents Directory: \(error)")
+            }
+        }
+    }
+
+    func readFromDocumentsDirectory(filename: String) -> String? {
+        if let documentsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = documentsDir.appendingPathComponent(filename)
+            do {
+                let content = try String(contentsOf: fileURL, encoding: .utf8)
+                return content
+            } catch {
+                print("Failed to read from Documents Directory: \(error)")
+            }
+        }
+        return nil
+    }
+                                </code></pre>
+                            </dl>
+
+                            <dl>
+                                <dt>Library Directory( 라이브러리 디렉토리 )</dt>
+                                <ul>
+                                    <li><strong>설명</strong>: 앱이 실행될 때 참조하는 설정파일이나 캐시 파일 등을 저장하는 공간. 이 디렉토리도 iCloud 백업에 포함 될 수 있지만,
+                                     하위 디렉토리마다 다르게 동작할 수 있다. 그리고 두 가지 주요 하위 디렉토리가 있다.</li>
+                                    <strong>a.Library/Preferences</strong>
+                                    <li><strong>설명</strong>: NSUserDefaults를 통해 저장되는 사용자 설정 정보가 이곳에 저장되며, iCloud 백업이 된다.</li>
+                                    <li><strong>장점</strong>: 앱의 상태와 설정 정보를 저장하는 데 유용하며, 기본적인 상태를 자동으로 관리해준다.
+                                     여기서 자동 관리는 시스템이 NSUserDefaults의 데이터를 자동으로 저장하고, 앱이 종료되거나 다시 시작할 때도 유지된다는 점이다.
+                                    </li>
+                                    <li><strong>단점</strong>: 이곳은 설정 파일에만 적합하며, 대용량 데이터를 저장하는 데는 부적합하다.(용량 제한이 얼마일까?)</li>
+
+                                    <strong>b.Library/Caches</strong>
+                                    <li><strong>설명</strong>: 
+                                        <br>
+                                        <ul>
+                                            <li>캐시 데이터를 저장하는 곳으로, iCloud 백업에 포함되지 않고 필요시 시스템에서 제거될 수 있다.</li>
+                                            <li>캐시 데이터는 앱이 종료되더라도 남아 있을 수 있으며, 앱이 다시 실행될 때 재사용 될 수 있다.</li>
+                                            <li>앱이 오랫동안 사용되지 않거나 디스크 공간이 부족한 경우에만 시스템이 이 데이터를 제거한다.</li>
+                                        </ul> 
+                                    </li>
+                                    <li><strong>장점</strong>: 캐시 데이터를 효율적으로 관리할 수 있으며, 불필요한 데이터는 시스템에 의해 자동으로 제거될 수 있어(디스크 공간이 가득차면 시스템에 의해 삭제된다.)
+                                     메모리 관리를 잘 할 수 있다.</li>
+                                    <li><strong>단점</strong>: 시스템에 의해 언제든 삭제될 수 있으므로, 중요한 데이터를 저장하는데는 적합하지 않음.</li>
+                                </ul>
+                                <pre><code class="language-swift">
+    // 2. Library/Preferences - 설정 정보 저장
+    func saveToUserDefaults(key: String, value: String) {
+        UserDefaults.standard.set(value, forKey: key)
+        print("Saved to UserDefaults: \(key)")
+    }
+
+    func readFromUserDefaults(key: String) -> String? {
+        return UserDefaults.standard.string(forKey: key)
+    }
+
+    // 3. Library/Caches - 캐시 데이터 저장
+    func saveToCachesDirectory(filename: String, content: String) {
+        if let cachesDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first {
+            let fileURL = cachesDir.appendingPathComponent(filename)
+            do {
+                try content.write(to: fileURL, atomically: true, encoding: .utf8)
+                print("Saved to Caches Directory: \(fileURL.path)")
+            } catch {
+                print("Failed to save to Caches Directory: \(error)")
+            }
+        }
+    }
+
+    func readFromCachesDirectory(filename: String) -> String? {
+        if let cachesDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first {
+            let fileURL = cachesDir.appendingPathComponent(filename)
+            do {
+                let content = try String(contentsOf: fileURL, encoding: .utf8)
+                return content
+            } catch {
+                print("Failed to read from Caches Directory: \(error)")
+            }
+        }
+        return nil
+    }
+                                </code></pre>
+                            </dl>
+
+                            <dl>
+                                <dt>tmp Directory( 임시 디렉토리 )</dt>
+                                <ul>
+                                    <li><strong>설명</strong>:
+                                        <br>
+                                        <ul>
+                                            <li>임시 파일을 저장하는 곳으로, 앱 실행 중에만 필요한 데이터를 저장하거나 네트워크 통신 중 잠깐 필요한 데이터를 저장하는데 사용.</li>
+                                            <li>앱이 백그라운드에서 종료될 때 또는 시스템이 디스크 공간이 부족할 때 자동으로 삭제된다.</li>
+                                            <li>앱을 다시 실행하면 tmp에 저장된 데이터는 사라지므로, 영속성이 보장되지 않는다.</li>
+                                        </ul> 
+                                    </li>
+                                    <li><strong>장점</strong>: 일시적으로 필요한 데이터를 저장하기에 적합하며, 자동으로 관리되어 개발자가 명시적으로 데이터를 삭제하지 않아도 됨.</li>
+                                    <li><strong>단점</strong>: 시스템에 의해 언제든 삭제될 수 있어(시스템은 디스크 공간이 부족할 때 tmp 데이터를 가장 먼저 삭제.) 데이터의 영속성이 보장되지 않는다.</li>
+                                </ul>
+                                <pre><code class="language-swift">
+    // 4. tmp Directory - 임시 파일 저장
+    func saveToTemporaryDirectory(filename: String, content: String) {
+        let tempDir = FileManager.default.temporaryDirectory
+        let fileURL = tempDir.appendingPathComponent(filename)
+        do {
+            try content.write(to: fileURL, atomically: true, encoding: .utf8)
+            print("Saved to Temporary Directory: \(fileURL.path)")
+        } catch {
+            print("Failed to save to Temporary Directory: \(error)")
+        }
+    }
+
+    func readFromTemporaryDirectory(filename: String) -> String? {
+        let tempDir = FileManager.default.temporaryDirectory
+        let fileURL = tempDir.appendingPathComponent(filename)
+        do {
+            let content = try String(contentsOf: fileURL, encoding: .utf8)
+            return content
+        } catch {
+            print("Failed to read from Temporary Directory: \(error)")
+        }
+        return nil
+    }
+                                </code></pre>
+                            </dl>
+
+                            <dl>
+                                <dt>App Group Container( 앱 그룹 컨테이너 )</dt>
+                                <ul>
+                                    <li><strong>설명</strong>: 동일한 앱 번들 또는 확장 프로그램에서 공유할 수 있는 데이터를 저장하는 공간.</li>
+                                    <li><strong>장점</strong>:
+                                        <br>
+                                        <ul> 
+                                            <li>동일한 앱 번들 내의 다른 앱이나 위젯과 데이터를 쉽게 공유할 수 있다.</li>
+                                            <li>앱 간 데이터 동기화 및 통합이 용이하다.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>단점</strong>: 앱 그룹을 설정하는 것이 다소 복잡할 수 있으며, 권한 설정도 고려해야함.</li>
+                                </ul>
+                                <pre><code class="language-swift">
+    // 5. App Group Container - 앱 그룹 컨테이너에 저장
+    func saveToAppGroupContainer(filename: String, content: String, groupName: String) {
+        if let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupName) {
+            let fileURL = containerURL.appendingPathComponent(filename)
+            do {
+                try content.write(to: fileURL, atomically: true, encoding: .utf8)
+                print("Saved to App Group Container: \(fileURL.path)")
+            } catch {
+                print("Failed to save to App Group Container: \(error)")
+            }
+        }
+    }
+
+    func readFromAppGroupContainer(filename: String, groupName: String) -> String? {
+        if let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupName) {
+            let fileURL = containerURL.appendingPathComponent(filename)
+            do {
+                let content = try String(contentsOf: fileURL, encoding: .utf8)
+                return content
+            } catch {
+                print("Failed to read from App Group Container: \(error)")
+            }
+        }
+        return nil
+    }
+                                </code></pre>
+                            </dl>
+
+                            <dl>
+                                <dt>iCloud Drive</dt>
+                                <ul>
+                                    <li><strong>설명</strong>: iCloud를 통해 데이터를 다른 디바이스와 동기화하거나 클라우드에 저장할 수 있는 저장소.</li>
+                                    <li><strong>장점</strong>:
+                                        <br>
+                                        <ul> 
+                                            <li>데이터를 여러 기기에서 동기화할 수 있다.</li>
+                                            <li>사용자가 접근하여 데이터를 직접 관리할 수 있다.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>단점</strong>: 
+                                        <br>
+                                        <ul> 
+                                            <li>사용자의 iCloud 공간을 차지할 수 있으며, 대용량 데이터를 저장할 경우 문제가 될 수 있다.</li>
+                                            <li>사용자가 iCloud 백업을 끌 경우, 데이터가 백업되지 않는다.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <pre><code class="language-swift">
+    // 6. iCloud Drive - iCloud에 파일 저장
+    func saveToICloudDrive(filename: String, content: String) {
+        if let iCloudURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") {
+            let fileURL = iCloudURL.appendingPathComponent(filename)
+            do {
+                try content.write(to: fileURL, atomically: true, encoding: .utf8)
+                print("Saved to iCloud Drive: \(fileURL.path)")
+            } catch {
+                print("Failed to save to iCloud Drive: \(error)")
+            }
+        } else {
+            print("iCloud is not enabled.")
+        }
+    }
+
+    func readFromICloudDrive(filename: String) -> String? {
+        if let iCloudURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") {
+            let fileURL = iCloudURL.appendingPathComponent(filename)
+            do {
+                let content = try String(contentsOf: fileURL, encoding: .utf8)
+                return content
+            } catch {
+                print("Failed to read from iCloud Drive: \(error)")
+            }
+        } else {
+            print("iCloud is not enabled.")
+        }
+        return nil
+    }
+                                </code></pre>
+                            </dl>
+
+                            <dl>
+                                <dt>KeyChain(키체인)</dt>
+                                <ul>
+                                    <li><strong>설명</strong>: 암호화된 저장소로, 사용자가 인증 정보(예: 비밀번호, 토큰 등)를 안전하게 저장하는 데 사용된다.</li>
+                                    <li><strong>장점</strong>:
+                                        <br>
+                                        <ul> 
+                                            <li>높은 보안성을 제공하며, 민감한 정보를 안전하게 저장할 수 있다.</li>
+                                            <li>iCloud Keychain을 사용하면 여러 기기 간에 인증 정보가 동기화가 가능하다.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>단점</strong>: 파일 시스템처럼 자유롭게 데이터를 저장할 수 없다. 민감한 인증 정보 외의 데이터를 저장하는데 부적합 하다.</li>
+                                </ul>
+                                <pre><code class="language-swift">
+    import Security
+    
+    // Keychain에 값 저장
+    func saveToKeychain(key: String, value: String) -> Bool {
+        let data = value.data(using: .utf8)!
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key,
+            kSecValueData as String: data
+        ]
+        
+        // 기존 값이 있다면 업데이트
+        SecItemDelete(query as CFDictionary)
+        
+        let status = SecItemAdd(query as CFDictionary, nil)
+        return status == errSecSuccess
+    }
+
+    // Keychain에서 값 읽기
+    func readFromKeychain(key: String) -> String? {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key,
+            kSecReturnData as String: kCFBooleanTrue!,
+            kSecMatchLimit as String: kSecMatchLimitOne
+        ]
+        
+        var dataTypeRef: AnyObject? = nil
+        let status = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+        
+        if status == errSecSuccess, let data = dataTypeRef as? Data {
+            return String(data: data, encoding: .utf8)
+        }
+        return nil
+    }
+
+    // Keychain에서 값 삭제
+    func deleteFromKeychain(key: String) -> Bool {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key
+        ]
+        let status = SecItemDelete(query as CFDictionary)
+        return status == errSecSuccess
+    }
+                                </code></pre>
+                            </dl>
+
+                            <dl>
+                                <dt>On-Demand Resources(ODR)</dt>
+                                <ul>
+                                    <li><strong>설명</strong>: 앱의 리소스를 사용자에게 즉시 제공할 필요가 있을 때만 다운로드되는 방식으로, 앱 스토에서 제공하는 특별한 저장소이다.
+                                     게임이나 대용량 앱에서 주로 사용된다.</li>
+                                    <li><strong>장점</strong>:
+                                        <br>
+                                        <ul> 
+                                            <li>앱 설치 시 전체 리소스를 다운로드하지 않고 필요할 때만 로드하므로 앱의 설치 용량을 줄일 수 있다.</li>
+                                            <li>사용자 경험을 최적화할 수 있다.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>단점</strong>: 네트워크 연결이 필요하며, 자주 사용되는 파일은 캐시되지만, 시스템에 의해 제거될 수 있다.</li>
+                                </ul>
+                                <pre><code class="language-swift">
+    var resourceRequest: NSBundleResourceRequest?
+
+    // ODR 리소스 요청 및 사용
+    func loadOnDemandResource(tags: Set<String>, completion: @escaping (Bool) -> Void) {
+        resourceRequest = NSBundleResourceRequest(tags: tags)
+        resourceRequest?.beginAccessingResources { error in
+            if let error = error {
+                print("Failed to load ODR resource: \(error)")
+                completion(false)
+                return
+            }
+            print("Successfully loaded ODR resource.")
+            completion(true)
+        }
+    }
+
+    // ODR 리소스 해제
+    func endAccessingResources() {
+        resourceRequest?.endAccessingResources()
+        resourceRequest = nil
+        print("ODR resource released.")
+    }
+                                </code></pre>
+                            </dl>
+                            
+                            
+                        </section>
+                    ` 
+                }
             ]
         },// 공부 기록
         {
@@ -1647,27 +2011,25 @@ function loadItemContent(itemId) {
         const contentSection = document.getElementById('content-section');
         contentSection.innerHTML = item.content;
 
-        // 카테고리와 타이틀을 구분자로 결합
         const category = data.categories.find(cat => cat.items.some(it => it.id === itemId));
         if (category) {
             document.title = `이승기의 블로그 - ${category.title} > ${item.title}`;
+            window.history.pushState({}, '', `${category.id}/${item.id}`);
         } else {
             document.title = `이승기의 블로그 - ${item.title}`;
+            window.history.pushState({}, '', `${item.id}`);
         }
 
         document.getElementById('currentSection').innerText = item.title;
 
-        // 탭 초기화
         if (item.id === 'portfolio') {
             setTimeout(() => {
                 document.getElementById("defaultOpen").click();
             }, 0);
         }
 
-        // Prism.js 코드 하이라이트 적용
         Prism.highlightAll();
 
-        // 뒤로가기 버튼 활성화
         if (category && category.items.length > 1) {
             document.getElementById('backBtn').style.display = 'block';
         } else {
@@ -1679,18 +2041,18 @@ function loadItemContent(itemId) {
 
 
 function loadContent(id, page = 1) {
-    lastCategoryId = id;  // 마지막 카테고리 ID 저장
+    lastCategoryId = id;
 
     const contentSection = document.getElementById('content-section');
     let category = data.categories.find(cat => cat.id === id);
 
     if (category) {
+        window.history.pushState({}, '', `${id}`);
+
         if (category.items.length === 1) {
-            // 하위 아이템이 1개일 경우 바로 로드하고 뒤로가기 버튼을 숨김
             loadItemContent(category.items[0].id);
             document.getElementById('backBtn').style.display = 'none';
         } else {
-            // 하위 아이템이 여러 개일 경우 페이징 처리
             const itemsPerPage = 10;
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
@@ -1714,8 +2076,6 @@ function loadContent(id, page = 1) {
             contentSection.innerHTML = content;
             document.title = `이승기의 블로그 - ${category.title}`;
             document.getElementById('currentSection').innerText = category.title;
-
-            // 뒤로가기 버튼 숨기기
             document.getElementById('backBtn').style.display = 'none';
         }
     }
