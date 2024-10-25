@@ -1980,6 +1980,17 @@ performEscapingClosure {
 
                         
                     `
+                },
+                {
+                    id:"seminar3",
+                    title:"KWDC 2024",
+                    content:`
+                        <section>
+                            <h2>KWDC에서의 세션 후기</h2>
+                            
+                            <h3></h3>
+                        </section>
+                    ` 
                 }
             ]
         }, // 세미나
